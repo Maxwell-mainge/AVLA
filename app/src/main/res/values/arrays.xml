@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="property_types">
+        <item>All Types</item>
+        <item>Bedsitter</item>
+        <item>Studio</item>
+        <item>1 Bedroom</item>
+        <item>2 Bedrooms</item>
+        <item>3 Bedrooms</item>
+    </string-array>
+
+    <string-array name="property_types_no_all">
+        <item>Bedsitter</item>
+        <item>Studio</item>
+        <item>1 Bedroom</item>
+        <item>2 Bedrooms</item>
+        <item>3 Bedrooms</item>
+    </string-array>
+
+    <string-array name="property_doc_types">
+        <item>Title Deed</item>
+        <item>Lease Agreement</item>
+        <item>Agent Authorization Letter</item>
+    </string-array>
+</resources>

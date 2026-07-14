@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/admin_nav_graph"
+    app:startDestination="@id/adminOverviewFragment">
+
+    <fragment android:id="@+id/adminOverviewFragment"
+        android:name="com.avla.app.ui.admin.AdminOverviewFragment" android:label="Overview"/>
+
+    <fragment android:id="@+id/adminPendingFragment"
+        android:name="com.avla.app.ui.admin.AdminPendingFragment" android:label="Pending Verifications"/>
+
+    <fragment android:id="@+id/adminListingsFragment"
+        android:name="com.avla.app.ui.admin.AdminListingsFragment" android:label="All Listings">
+
+        <action
+            android:id="@+id/action_adminListingsFragment_to_listingDetailFragment"
+            app:destination="@id/listingDetailFragment" />
+
+    </fragment>
+
+    <fragment android:id="@+id/adminUsersFragment"
+        android:name="com.avla.app.ui.admin.AdminUsersFragment" android:label="All Users"/>
+
+    <fragment android:id="@+id/listingDetailFragment"
+        android:name="com.avla.app.ui.listings.ListingDetailFragment"
+        android:label="Listing Details" />
+
+    <fragment android:id="@+id/adminProfileFragment"
+        android:name="com.avla.app.ui.admin.AdminProfileFragment"
+        android:label="Profile" />
+
+    <fragment android:id="@+id/aboutFragment"
+        android:name="com.avla.app.ui.profile.AboutFragment"
+        android:label="About AVLA" />
+
+</navigation>

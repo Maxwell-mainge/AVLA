@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="admin_property_types">
+        <item>All Types</item>
+        <item>Bedsitter</item>
+        <item>Studio</item>
+        <item>1 Bedroom</item>
+        <item>2 Bedrooms</item>
+        <item>3 Bedrooms</item>
+    </string-array>
+    <string-array name="property_doc_types">
+        <item>Title Deed</item>
+        <item>Lease Agreement</item>
+        <item>Agent Authorization Letter</item>
+    </string-array>
+    <string-array name="property_types">
+        <item>All Types</item>
+        <item>Bedsitter</item>
+        <item>Studio</item>
+        <item>1 Bedroom</item>
+        <item>2 Bedrooms</item>
+        <item>3 Bedrooms</item>
+    </string-array>
+    <string-array name="property_types_no_all">
+        <item>Bedsitter</item>
+        <item>Studio</item>
+        <item>1 Bedroom</item>
+        <item>2 Bedrooms</item>
+        <item>3 Bedrooms</item>
+    </string-array>
+    <color name="avla_blue">#1976D2</color>
+    <color name="avla_blue_light">#E3F2FD</color>
+    <color name="avla_green">#2E7D32</color>
+    <color name="avla_green_dark">#005005</color>
+    <color name="avla_green_light">#60AD5E</color>
+    <color name="avla_green_light_bg">#E8F5E9</color>
+    <color name="avla_orange">#F57C00</color>
+    <color name="avla_orange_light">#FFF3E0</color>
+    <color name="black">#212121</color>
+    <color name="grey_light">#F5F5F5</color>
+    <color name="grey_text">#757575</color>
+    <color name="ic_launcher_background">#3DDC84</color>
+    <color name="text_input_hint_value">#2E7D32</color>
+    <color name="text_input_stroke_color">#9E9E9E</color>
+    <color name="white">#FFFFFF</color>
+    <string name="add_photos">Add Photos</string>
+    <string name="already_have_account">Already have an account? Login</string>
+    <string name="amenities_hint">Amenities (comma-separated e.g. Water, Security)</string>
+    <string name="app_name">AVLA</string>
+    <string name="bedrooms">Number of Bedrooms</string>
+    <string name="call_landlord">Call Landlord</string>
+    <string name="clear_filters">Clear</string>
+    <string name="description">Description</string>
+    <string name="dont_have_account">Don\'t have an account? Register</string>
+    <string name="email">Email</string>
+    <string name="filter_landlord">Filter by landlord</string>
+    <string name="filter_location">Location (e.g. Kahawa West)</string>
+    <string name="full_name">Full Name</string>
+    <string name="gcm_defaultSenderId" translatable="false">910177254323</string>
+    <string name="google_api_key" translatable="false">AIzaSyAOjKFVx2e84HB160qRX6JaoAdQJ_8LsBo</string>
+    <string name="google_app_id" translatable="false">1:910177254323:android:ef24de63d1b3256c4ae9c6</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAOjKFVx2e84HB160qRX6JaoAdQJ_8LsBo</string>
+    <string name="google_storage_bucket" translatable="false">com-avla-app.firebasestorage.app</string>
+    <string name="home">Home</string>
+    <string name="i_am_a_landlord">I am a Landlord</string>
+    <string name="i_am_a_student">I am a Student</string>
+    <string name="ive_verified">I\'ve Verified</string>
+    <string name="location">Location</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="max_price">Max Price (KSh)</string>
+    <string name="min_price">Min Price (KSh)</string>
+    <string name="my_listings">My Listings</string>
+    <string name="near_campus">Near Campus (e.g. CUEA)</string>
+    <string name="no_listings">No listings found.</string>
+    <string name="password">Password</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="post">Post Listing</string>
+    <string name="post_listing">Post Listing</string>
+    <string name="price_ksh">Price (KSh/month)</string>
+    <string name="profile">Profile</string>
+    <string name="project_id" translatable="false">com-avla-app</string>
+    <string name="register">Register</string>
+    <string name="resend_email">Resend Email</string>
+    <string name="search">Search</string>
+    <string name="search_btn">Search</string>
+    <string name="title">Title</string>
+    <string name="verify_email">Verify Your Email</string>
+    <string name="verify_email_msg">A verification link has been sent to your email. Please verify before continuing.</string>
+    <string name="whatsapp">WhatsApp</string>
+    <style name="AVLA.AlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="shapeAppearanceOverlay">@style/AVLA.AlertDialog.ShapeOverlay</item>
+        <item name="buttonBarPositiveButtonStyle">@style/AVLA.AlertDialog.PositiveButton</item>
+        <item name="buttonBarNegativeButtonStyle">@style/AVLA.AlertDialog.NegativeButton</item>
+        <item name="buttonBarNeutralButtonStyle">@style/AVLA.AlertDialog.NeutralButton</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/AVLA.AlertDialog.Title</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/AVLA.AlertDialog.Body</item>
+        <item name="android:windowMinWidthMajor">85%</item>
+        <item name="android:windowMinWidthMinor">85%</item>
+    </style>
+    <style name="AVLA.AlertDialog.Body" parent="MaterialAlertDialog.MaterialComponents.Body.Text">
+        <item name="android:textColor">@color/grey_text</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+    </style>
+    <style name="AVLA.AlertDialog.NegativeButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/text_input_stroke_color</item>
+        <item name="android:textColor">@color/grey_text</item>
+        <item name="cornerRadius">20dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+    </style>
+    <style name="AVLA.AlertDialog.NeutralButton" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/avla_green</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    <style name="AVLA.AlertDialog.PositiveButton" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/avla_green</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="cornerRadius">20dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+    </style>
+    <style name="AVLA.AlertDialog.ShapeOverlay" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+    <style name="AVLA.AlertDialog.Title" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+    <style name="AVLA.DialogEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/bg_dialog_edittext</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="android:layout_marginBottom">12dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/grey_text</item>
+    </style>
+    <style name="AVLA.TextInputEditText" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="AVLA.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/text_input_stroke</item>
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="hintTextColor">@color/text_input_hint</item>
+        <item name="android:textColorHint">@color/grey_text</item>
+    </style>
+    <style name="BottomNavText">
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="Theme.AVLA" parent="Theme.MaterialComponents.Light.NoActionBar">
+        
+        <item name="colorPrimary">@color/avla_green</item>
+        <item name="colorPrimaryDark">@color/avla_green</item>
+        <item name="colorPrimaryVariant">@color/avla_green_dark</item>
+        <item name="colorSecondary">@color/avla_green_light</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowBackground">@color/white</item>
+
+        
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/grey_text</item>
+        <item name="android:editTextColor">@color/black</item>
+        <item name="android:editTextBackground">@android:color/transparent</item>
+
+        
+        <item name="android:editTextStyle">@style/AVLA.DialogEditText</item>
+
+        
+        <item name="alertDialogTheme">@style/AVLA.AlertDialog</item>
+        <item name="materialAlertDialogTheme">@style/AVLA.AlertDialog</item>
+
+        
+        <item name="boxStrokeColor">@color/text_input_stroke</item>
+        <item name="boxStrokeWidth">1.5dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="hintTextColor">@color/text_input_hint</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.AVLA.TextInputLayout</item>
+
+        
+        <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView</item>
+    </style>
+    <style name="Theme.AVLA.Splash" parent="Theme.AVLA"/>
+    <style name="ThemeOverlay.AVLA.TextInputLayout" parent="">
+        <item name="colorOnSurface">@color/black</item>
+        <item name="colorPrimary">@color/avla_green</item>
+    </style>
+</resources>

@@ -1,0 +1,56 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Document outline -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"
+        android:fillColor="@android:color/transparent"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round"
+        android:pathData="M2,2h12v18h-12z" />
+    <!-- Bullet 1 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M4.5,6.5h1.5v1.5h-1.5z" />
+    <!-- Line 1 -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"
+        android:pathData="M8,7.25h4" />
+    <!-- Bullet 2 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M4.5,10.5h1.5v1.5h-1.5z" />
+    <!-- Line 2 -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"
+        android:pathData="M8,11.25h4" />
+    <!-- Bullet 3 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M4.5,14.5h1.5v1.5h-1.5z" />
+    <!-- Line 3 -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"
+        android:pathData="M8,15.25h4" />
+    <!-- Eye - overlapping bottom-right of document -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"
+        android:fillColor="@android:color/transparent"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round"
+        android:pathData="M13,17.5c1.5,-2.5 5,-2.5 6.5,0 -1.5,2.5 -5,2.5 -6.5,0z" />
+    <!-- Eye pupil -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M16.25,17.5m-1.25,0a1.25,1.25 0,1 1,2.5 0a1.25,1.25 0,1 1,-2.5 0" />
+</vector>

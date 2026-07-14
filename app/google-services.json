@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "910177254323",
+    "project_id": "com-avla-app",
+    "storage_bucket": "com-avla-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:910177254323:android:ef24de63d1b3256c4ae9c6",
+        "android_client_info": {
+          "package_name": "com.avla.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOjKFVx2e84HB160qRX6JaoAdQJ_8LsBo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

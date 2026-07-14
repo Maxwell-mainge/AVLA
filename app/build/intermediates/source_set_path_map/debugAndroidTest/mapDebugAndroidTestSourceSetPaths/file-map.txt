@@ -1,0 +1,4 @@
+com.avla.app.test.app-androidTest-0 C:\Users\maing\Downloads\AVLA_skeleton (1)\AVLA\app\build\generated\res\resValues\androidTest\debug
+com.avla.app.test.app-mergeDebugAndroidTestResources-1 C:\Users\maing\Downloads\AVLA_skeleton (1)\AVLA\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.avla.app.test.app-mergeDebugAndroidTestResources-2 C:\Users\maing\Downloads\AVLA_skeleton (1)\AVLA\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.avla.app.test.app-debugAndroidTest-3 C:\Users\maing\Downloads\AVLA_skeleton (1)\AVLA\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources

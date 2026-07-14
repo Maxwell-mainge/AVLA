@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="avla_green">#2E7D32</color>
+    <color name="avla_green_light">#60AD5E</color>
+    <color name="avla_green_dark">#005005</color>
+    <color name="avla_green_light_bg">#E8F5E9</color>
+    <color name="avla_orange">#F57C00</color>
+    <color name="avla_orange_light">#FFF3E0</color>
+    <color name="avla_blue">#1976D2</color>
+    <color name="avla_blue_light">#E3F2FD</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#212121</color>
+    <color name="grey_light">#F5F5F5</color>
+    <color name="grey_text">#757575</color>
+    <color name="ic_launcher_background">#3DDC84</color>
+
+    <!-- TextInputLayout stroke colours -->
+    <color name="text_input_stroke_color">#9E9E9E</color>
+    <color name="text_input_hint_value">#2E7D32</color>
+</resources>

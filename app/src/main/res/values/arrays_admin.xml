@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      Index 0 = "All Types" (no property type filter applied).
+      Indexes 1-5 map directly to PropertyType.values()[index - 1] in
+      AdminListingsFragment.kt — keep this order in sync with the enum
+      in Models.kt if you ever add/reorder property types.
+    -->
+    <string-array name="admin_property_types">
+        <item>All Types</item>
+        <item>Bedsitter</item>
+        <item>Studio</item>
+        <item>1 Bedroom</item>
+        <item>2 Bedrooms</item>
+        <item>3 Bedrooms</item>
+    </string-array>
+</resources>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/authNavGraphRoot"
+    app:startDestination="@id/roleSelectFragment">
+
+    <!-- Role Selection screen with navigation actions to register/login paths -->
+    <fragment android:id="@+id/roleSelectFragment"
+        android:name="com.avla.app.ui.auth.RoleSelectFragment"
+        android:label="Welcome">
+        <action
+            android:id="@+id/action_roleSelectFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_roleSelectFragment_to_studentRegisterFragment"
+            app:destination="@id/studentRegisterFragment" />
+        <action
+            android:id="@+id/action_roleSelectFragment_to_landlordRegisterFragment"
+            app:destination="@id/landlordRegisterFragment" />
+    </fragment>
+
+    <fragment android:id="@+id/loginFragment"
+        android:name="com.avla.app.ui.auth.LoginFragment"
+        android:label="Login" />
+
+    <!-- Registration flows leading to email verification -->
+    <fragment android:id="@+id/studentRegisterFragment"
+        android:name="com.avla.app.ui.auth.StudentRegisterFragment"
+        android:label="Student Registration">
+        <action
+            android:id="@+id/action_studentRegisterFragment_to_verifyEmailFragment"
+            app:destination="@id/verifyEmailFragment" />
+    </fragment>
+
+    <fragment android:id="@+id/landlordRegisterFragment"
+        android:name="com.avla.app.ui.auth.LandlordRegisterFragment"
+        android:label="Landlord Registration">
+        <action
+            android:id="@+id/action_landlordRegisterFragment_to_verifyEmailFragment"
+            app:destination="@id/verifyEmailFragment" />
+    </fragment>
+
+    <!-- Post-verification destination states -->
+    <fragment android:id="@+id/verifyEmailFragment"
+        android:name="com.avla.app.ui.auth.VerifyEmailFragment"
+        android:label="Verify Email">
+        <action
+            android:id="@+id/action_verifyEmailFragment_to_landlordPendingFragment"
+            app:destination="@id/landlordPendingFragment" />
+        <action
+            android:id="@+id/action_verifyEmailFragment_to_studentIdResubmitFragment"
+            app:destination="@id/studentIdResubmitFragment" />
+    </fragment>
+
+    <fragment android:id="@+id/landlordPendingFragment"
+        android:name="com.avla.app.ui.auth.LandlordPendingFragment"
+        android:label="Account Pending" />
+
+    <fragment android:id="@+id/studentIdResubmitFragment"
+        android:name="com.avla.app.ui.auth.StudentIdResubmitFragment"
+        android:label="Resubmit Student ID" />
+
+</navigation>

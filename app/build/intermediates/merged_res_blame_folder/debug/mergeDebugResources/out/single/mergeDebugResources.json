@@ -1,0 +1,378 @@
+[
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_profile.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_profile.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_ic_arrow_forward.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\ic_arrow_forward.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_favorites.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_favorites.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\mipmap-hdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\mipmap-hdpi\\ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\navigation_auth_nav_graph.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\navigation\\auth_nav_graph.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_bg_avatar_circle.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\bg_avatar_circle.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\menu_bottom_nav_admin.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\menu\\bottom_nav_admin.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_student_register.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_student_register.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_bg_icon_circle_light.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\bg_icon_circle_light.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_admin_users.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_admin_users.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_admin_profile.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_admin_profile.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_ic_landlord_profile.png.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\ic_landlord_profile.png"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_ic_favorite_border.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\ic_favorite_border.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_activity_admin.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\activity_admin.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\navigation_admin_nav_graph.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\navigation\\admin_nav_graph.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_bg_progress_green.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\bg_progress_green.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\navigation_landlord_nav_graph.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\navigation\\landlord_nav_graph.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_listing_detail.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_listing_detail.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\mipmap-xhdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\mipmap-xhdpi\\ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_bg_favorite_circle.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\bg_favorite_circle.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_house_illustration.png.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\house_illustration.png"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_landlord_manage_listing.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_landlord_manage_listing.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_ic_profile.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\ic_profile.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_nav_header_admin.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\nav_header_admin.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_item_recent_activity.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\item_recent_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_ic_pending.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\ic_pending.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_ic_placeholder_house.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\ic_placeholder_house.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\navigation_main_nav_graph.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\navigation\\main_nav_graph.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_item_image_slider.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\item_image_slider.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\menu_drawer_admin.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\menu\\drawer_admin.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_badge_background.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\badge_background.xml"
+    },
+    {
+        "merged": "com.avla.app-debug-59:/navigation_auth_nav_graph.xml.flat",
+        "source": "com.avla.app-main-61:/navigation/auth_nav_graph.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\mipmap-xxhdpi\\ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_verify_email.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_verify_email.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_admin_overview.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_admin_overview.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_item_pending_landlord.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\item_pending_landlord.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_bg_dot_green.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\bg_dot_green.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_ic_people.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\ic_people.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\menu_drawer_landlord.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\menu\\drawer_landlord.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_admin_listings.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_admin_listings.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_dot_active.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\dot_active.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_ic_favorite.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\ic_favorite.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_activity_auth.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\activity_auth.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_home.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_ic_admin_profile.png.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\ic_admin_profile.png"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_bg_badge_rounded.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\bg_badge_rounded.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_ic_users.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\ic_users.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_ic_listings.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\ic_listings.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_search.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_search.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_ic_student_cap.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\ic_student_cap.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\mipmap-xxxhdpi\\ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_indicator_selector.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\indicator_selector.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_landlord_pending.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_landlord_pending.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_item_listing_grid.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\item_listing_grid.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_ic_overview.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\ic_overview.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_dot_inactive.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\dot_inactive.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_post_listing.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_post_listing.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\navigation_student_nav_graph.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\navigation\\student_nav_graph.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_register.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_register.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_login.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\menu_drawer_student.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\menu\\drawer_student.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_bg_dot_blue.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\bg_dot_blue.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\menu_bottom_nav_student.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\menu\\bottom_nav_student.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_landlord_register.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_landlord_register.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_my_listings.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_my_listings.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\color_text_input_stroke.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\color\\text_input_stroke.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_student_id_resubmit.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_student_id_resubmit.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_nav_header.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\nav_header.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_about.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_about.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_ic_student_profile.png.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\ic_student_profile.png"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\menu_drawer_menu.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\menu\\drawer_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_bg_pill_light_green.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\bg_pill_light_green.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\color_text_input_hint.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\color\\text_input_hint.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_role_select.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_role_select.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_bg_dot_orange.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\bg_dot_orange.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_bg_dialog_edittext.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\bg_dialog_edittext.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_item_user.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\item_user.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_admin_pending.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_admin_pending.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\menu_bottom_nav_landlord.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\menu\\bottom_nav_landlord.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\mipmap-mdpi_ic_launcher_foreground.webp.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\mipmap-mdpi\\ic_launcher_foreground.webp"
+    }
+]

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AVLA</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="full_name">Full Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="i_am_a_student">I am a Student</string>
+    <string name="i_am_a_landlord">I am a Landlord</string>
+    <string name="dont_have_account">Don\'t have an account? Register</string>
+    <string name="already_have_account">Already have an account? Login</string>
+    <string name="verify_email">Verify Your Email</string>
+    <string name="verify_email_msg">A verification link has been sent to your email. Please verify before continuing.</string>
+    <string name="ive_verified">I\'ve Verified</string>
+    <string name="resend_email">Resend Email</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="post_listing">Post Listing</string>
+    <string name="my_listings">My Listings</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="no_listings">No listings found.</string>
+    <string name="call_landlord">Call Landlord</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="location">Location</string>
+    <string name="near_campus">Near Campus (e.g. CUEA)</string>
+    <string name="price_ksh">Price (KSh/month)</string>
+    <string name="bedrooms">Number of Bedrooms</string>
+    <string name="amenities_hint">Amenities (comma-separated e.g. Water, Security)</string>
+    <string name="add_photos">Add Photos</string>
+    <string name="post">Post Listing</string>
+    <string name="min_price">Min Price (KSh)</string>
+    <string name="max_price">Max Price (KSh)</string>
+    <string name="filter_location">Location (e.g. Kahawa West)</string>
+    <string name="search_btn">Search</string>
+    <!-- Add these two inside your existing <resources> block in strings.xml -->
+    <string name="filter_landlord">Filter by landlord</string>
+    <string name="clear_filters">Clear</string>
+</resources>
+<!-- intentionally left blank — arrays in arrays.xml -->

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/homeFragment"      android:title="Home"      android:icon="@android:drawable/ic_menu_compass"/>
+        <item android:id="@+id/searchFragment"    android:title="Search"    android:icon="@android:drawable/ic_menu_search"/>
+        <item android:id="@+id/favoritesFragment" android:title="Favorites" android:icon="@android:drawable/ic_menu_myplaces"/>
+        <item android:id="@+id/profileFragment"   android:title="Profile"   android:icon="@android:drawable/ic_menu_myplaces"/>
+    </group>
+    <item android:id="@+id/nav_logout" android:title="Logout" android:icon="@android:drawable/ic_lock_power_off"/>
+</menu>
