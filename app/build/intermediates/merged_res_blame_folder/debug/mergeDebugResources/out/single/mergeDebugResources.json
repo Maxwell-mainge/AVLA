@@ -20,12 +20,12 @@
         "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\navigation\\auth_nav_graph.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_bg_avatar_circle.xml.flat",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\bg_avatar_circle.xml"
-    },
-    {
         "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\menu_bottom_nav_admin.xml.flat",
         "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\menu\\bottom_nav_admin.xml"
+    },
+    {
+        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_bg_avatar_circle.xml.flat",
+        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\bg_avatar_circle.xml"
     },
     {
         "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\layout_fragment_student_register.xml.flat",
@@ -140,10 +140,6 @@
         "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\badge_background.xml"
     },
     {
-        "merged": "com.avla.app-debug-59:/navigation_auth_nav_graph.xml.flat",
-        "source": "com.avla.app-main-61:/navigation/auth_nav_graph.xml"
-    },
-    {
         "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
         "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\mipmap-xxhdpi\\ic_launcher_foreground.webp"
     },
@@ -186,6 +182,10 @@
     {
         "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_dot_active.xml.flat",
         "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\drawable\\dot_active.xml"
+    },
+    {
+        "merged": "com.avla.app-debug-59:/layout_fragment_student_id_resubmit.xml.flat",
+        "source": "com.avla.app-main-61:/layout/fragment_student_id_resubmit.xml"
     },
     {
         "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-debug-59:\\drawable_ic_favorite.xml.flat",

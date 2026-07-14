@@ -3585,6 +3585,7 @@ id item_touch_helper_previous_elevation
 id ivActivityIcon
 id ivFavorite
 id ivHouseIllustration
+id ivIcon
 id ivProfileAvatar
 id ivSliderImage
 id ivThumbnail
@@ -3612,6 +3613,7 @@ id list_item
 id listingDetailFragment
 id llDotsIndicator
 id llLandlordInfo
+id llResubmitForm
 id llStudentInfo
 id locale
 id loginFragment
@@ -3944,11 +3946,13 @@ id tvRole
 id tvRoleBadge
 id tvStatus
 id tvStatusSubtext
+id tvSubtitle
 id tvSupportEmail
 id tvSupportPhone
 id tvTagline
 id tvTitle
 id tvType
+id tvUnderReview
 id tvUsersCount
 id tvVerification
 id tvVerificationStatus

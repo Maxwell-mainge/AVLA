@@ -3584,6 +3584,7 @@ int id item_touch_helper_previous_elevation 0x7f090143
 int id ivActivityIcon 0x7f090144
 int id ivFavorite 0x7f090145
 int id ivHouseIllustration 0x7f090146
+int id ivIcon 0x7f0902d8
 int id ivProfileAvatar 0x7f090147
 int id ivSliderImage 0x7f090148
 int id ivThumbnail 0x7f090149
@@ -3611,6 +3612,7 @@ int id list_item 0x7f09015e
 int id listingDetailFragment 0x7f09015f
 int id llDotsIndicator 0x7f090160
 int id llLandlordInfo 0x7f090161
+int id llResubmitForm 0x7f0902d9
 int id llStudentInfo 0x7f090162
 int id locale 0x7f090163
 int id loginFragment 0x7f090164
@@ -3943,11 +3945,13 @@ int id tvRole 0x7f0902aa
 int id tvRoleBadge 0x7f0902ab
 int id tvStatus 0x7f0902ac
 int id tvStatusSubtext 0x7f0902ad
+int id tvSubtitle 0x7f0902da
 int id tvSupportEmail 0x7f0902ae
 int id tvSupportPhone 0x7f0902af
 int id tvTagline 0x7f0902b0
 int id tvTitle 0x7f0902b1
 int id tvType 0x7f0902b2
+int id tvUnderReview 0x7f0902db
 int id tvUsersCount 0x7f0902b3
 int id tvVerification 0x7f0902b4
 int id tvVerificationStatus 0x7f0902b5

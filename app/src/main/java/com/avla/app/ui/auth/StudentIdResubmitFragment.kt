@@ -11,16 +11,20 @@ import androidx.navigation.fragment.findNavController
 import com.avla.app.R
 import com.avla.app.data.repository.FirebaseRepository
 import com.avla.app.databinding.FragmentStudentIdResubmitBinding
-import com.avla.app.ui.main.MainActivity
 import com.avla.app.utils.showSnackbar
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 
 /**
  * Shown to a student whose school ID was flagged on admin spot-check.
- * Unlike LandlordPendingFragment, this never blocks app usage — once the
- * student resubmits a valid link, they go straight into MainActivity
- * rather than being sent back to log in again.
+ * Unlike LandlordPendingFragment, this never blocks app usage entirely —
+ * but unlike before, resubmitting a new link does NOT drop the student
+ * straight into MainActivity. It stays flagged until an admin explicitly
+ * reviews the resubmission (see FirebaseRepository.reviewResubmittedStudentId).
+ *
+ * ID_RESUBMITTED argument (passed via AuthActivity from LoginFragment) tells
+ * this screen whether the student already resubmitted and is just waiting —
+ * in that case we show the "under review" message instead of the form again.
  */
 class StudentIdResubmitFragment : Fragment() {
 
@@ -39,6 +43,11 @@ class StudentIdResubmitFragment : Fragment() {
 
         val reason = arguments?.getString("ID_FLAG_REASON") ?: ""
         binding.tvReason.text = "Reason: ${reason.ifBlank { "Not specified" }}"
+
+        val alreadyResubmitted = arguments?.getBoolean("ID_RESUBMITTED") ?: false
+        if (alreadyResubmitted) {
+            showUnderReviewState()
+        }
 
         binding.btnOpenDrive.setOnClickListener {
             startActivity(
@@ -66,16 +75,13 @@ class StudentIdResubmitFragment : Fragment() {
             viewLifecycleOwner.lifecycleScope.launch {
                 try {
                     repo.resubmitStudentId(uid, newLink)
-                    val user = repo.getUserProfile(uid)
                     if (_binding == null) return@launch
 
-                    startActivity(
-                        Intent(requireContext(), MainActivity::class.java).apply {
-                            putExtra("USER_ROLE", "STUDENT")
-                            putExtra("USER_CAMPUS", user?.campus ?: "")
-                        }
-                    )
-                    requireActivity().finish()
+                    // No longer launches MainActivity — the student stays flagged
+                    // until an admin reviews the resubmission. Show the waiting
+                    // state in place instead.
+                    binding.root.showSnackbar("Resubmitted. An admin will review it shortly.")
+                    showUnderReviewState()
                 } catch (e: Exception) {
                     if (_binding != null) {
                         binding.btnResubmit.isEnabled = true
@@ -92,6 +98,14 @@ class StudentIdResubmitFragment : Fragment() {
                 findNavController().navigate(R.id.loginFragment)
             }
         }
+    }
+
+    @Suppress("SetTextI18n")
+    private fun showUnderReviewState() {
+        binding.llResubmitForm.visibility = View.GONE
+        binding.tvUnderReview.visibility = View.VISIBLE
+        binding.tvTitle.text = "Resubmission under review"
+        binding.tvSubtitle.text = "We've received your resubmitted document."
     }
 
     override fun onDestroyView() { super.onDestroyView(); _binding = null }
