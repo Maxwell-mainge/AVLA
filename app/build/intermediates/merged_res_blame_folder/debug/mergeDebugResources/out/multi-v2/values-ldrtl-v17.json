@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.avla.app-mergeDebugResources-57:/values-ldrtl-v17/values-ldrtl-v17.xml",
+            "outputFile": "com.avla.app-mergeDebugResources-58:/values-ldrtl-v17/values-ldrtl-v17.xml",
             "map": [
                 {
                     "source": "C:\\Users\\maing\\.gradle\\caches\\9.0.0\\transforms\\b4fc8ca208d521432c9b4e4a61b8c295\\transformed\\material-1.12.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",

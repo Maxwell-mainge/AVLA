@@ -159,11 +159,16 @@ class LandlordManageListingFragment : Fragment() {
                         LinearLayout.LayoutParams.WRAP_CONTENT
                     )
 
-                    setOnClickListener {
+                    // NEW — explicit label. This listener is nested inside the
+                    // outer btnEditPhotos.setOnClickListener { ... } above, so
+                    // both lambdas previously shared the same implicit label
+                    // ("setOnClickListener"), which is what made
+                    // return@setOnClickListener ambiguous and failed compilation.
+                    setOnClickListener preview@{
                         val currentLink = editText.text.toString().trim()
                         if (currentLink.isBlank()) {
                             binding.root.showSnackbar("Please paste a link first to preview it")
-                            return@setOnClickListener
+                            return@preview
                         }
 
                         // Open a sub-dialog to show the live parsed Google Drive image thumbnail

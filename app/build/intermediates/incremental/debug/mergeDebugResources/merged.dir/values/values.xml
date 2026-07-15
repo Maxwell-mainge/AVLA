@@ -2123,6 +2123,7 @@
     <string name="fallback_menu_item_copy_link">Copy link</string>
     <string name="fallback_menu_item_open_in_browser">Open in browser</string>
     <string name="fallback_menu_item_share_link">Share link</string>
+    <string name="fcm_fallback_notification_channel_label">Miscellaneous</string>
     <string name="filter_landlord">Filter by landlord</string>
     <string name="filter_location">Location (e.g. Kahawa West)</string>
     <string name="full_name">Full Name</string>

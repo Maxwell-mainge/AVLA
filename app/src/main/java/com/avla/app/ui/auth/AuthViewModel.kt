@@ -52,6 +52,10 @@ class AuthViewModel : ViewModel() {
                     studentIdDocLink = studentIdDocLink
                 )
                 repo.saveUserProfile(user)
+
+                // NEW — best-effort; a failure here should never block registration
+                try { repo.saveFcmTokenForCurrentUser() } catch (_: Exception) {}
+
                 _authState.value = UiState.Success(user)
             } catch (e: Exception) {
                 _authState.value = UiState.Error(e.message ?: "Registration failed")
@@ -88,6 +92,10 @@ class AuthViewModel : ViewModel() {
                     propertyDocType   = propertyDocType
                 )
                 repo.saveUserProfile(user)
+
+                // NEW — best-effort; a failure here should never block registration
+                try { repo.saveFcmTokenForCurrentUser() } catch (_: Exception) {}
+
                 _authState.value = UiState.Success(user)
             } catch (e: Exception) {
                 _authState.value = UiState.Error(e.message ?: "Registration failed")
@@ -143,6 +151,10 @@ class AuthViewModel : ViewModel() {
                 repo.loginWithEmail(email, password)
                 val uid  = repo.currentUser?.uid ?: error("UID null after login")
                 val user = repo.getUserProfile(uid) ?: error("Profile not found")
+
+                // NEW — best-effort; a failure here should never block login
+                try { repo.saveFcmTokenForCurrentUser() } catch (_: Exception) {}
+
                 _authState.value = UiState.Success(user)
             } catch (e: Exception) {
                 _authState.value = UiState.Error(e.message ?: "Login failed")

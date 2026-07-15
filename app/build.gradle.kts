@@ -36,6 +36,16 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    // NEW — google-auth-library-oauth2-http pulls in gRPC/Guava transitively,
+    // which ship a duplicate META-INF/INDEX.LIST (and sometimes DEPENDENCIES).
+    // This tells Gradle to just keep one copy instead of failing the merge.
+    packaging {
+        resources {
+            excludes += "/META-INF/INDEX.LIST"
+            excludes += "/META-INF/DEPENDENCIES"
+        }
+    }
 }
 
 dependencies {
@@ -58,6 +68,12 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.storage)
+
+    // Push notifications (direct FCM send from the app, no Cloud Functions —
+    // see FcmService.kt and AvlaFirebaseMessagingService.kt)
+    implementation("com.google.firebase:firebase-messaging-ktx")
+    implementation("com.google.auth:google-auth-library-oauth2-http:1.23.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
     // Image loading
     implementation(libs.glide)

@@ -41,7 +41,8 @@ data class AppUser(
     val createdAt: Long = System.currentTimeMillis(),
     val verifiedAt: Long? = null,           // when a landlord was approved
     val rejectedAt: Long? = null,           // when a landlord was last rejected
-    val favoriteListingIds: List<String> = emptyList()
+    val favoriteListingIds: List<String> = emptyList(),
+    val fcmToken: String = ""               // NEW — this device's push notification token
 )
 
 data class Listing(

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.avla.app-mergeDebugResources-57:/values-v31/values-v31.xml",
+            "outputFile": "com.avla.app-mergeDebugResources-58:/values-v31/values-v31.xml",
             "map": [
                 {
                     "source": "C:\\Users\\maing\\.gradle\\caches\\9.0.0\\transforms\\dc74618ee1fa6bb285e35b90c24de427\\transformed\\jetified-core-splashscreen-1.0.1\\res\\values-v31\\values-v31.xml",

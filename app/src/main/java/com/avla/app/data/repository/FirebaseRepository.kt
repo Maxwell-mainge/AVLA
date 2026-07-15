@@ -10,7 +10,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.FirebaseStorage
+import com.avla.app.utils.FcmService
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
@@ -84,6 +86,29 @@ class FirebaseRepository {
         db().collection("users").document(uid).get().await()
             .toObject(AppUser::class.java)
 
+    /**
+     * NEW — saves a specific FCM token to a specific user's doc. Called from
+     * AvlaFirebaseMessagingService.onNewToken() whenever the token is
+     * created or rotated.
+     */
+    suspend fun updateFcmToken(uid: String, token: String) {
+        db().collection("users").document(uid).update("fcmToken", token).await()
+    }
+
+    /**
+     * NEW — fetches the current device's FCM token and saves it against
+     * whoever is currently signed in. Called right after login/registration
+     * succeeds, since onNewToken() only fires when the token is first
+     * created or rotated — which may have happened before this user ever
+     * signed in, so we'd otherwise miss it. Best-effort: failure here should
+     * never block login/registration.
+     */
+    suspend fun saveFcmTokenForCurrentUser() {
+        val uid = currentUser?.uid ?: return
+        val token = FirebaseMessaging.getInstance().token.await()
+        updateFcmToken(uid, token)
+    }
+
     suspend fun updateVerificationStatus(
         landlordUid: String,
         status: VerificationStatus,
@@ -101,13 +126,29 @@ class FirebaseRepository {
 
         db().collection("users").document(landlordUid).update(updates).await()
 
+        val landlord = getUserProfile(landlordUid)
+
         if (status == VerificationStatus.VERIFIED) {
-            val landlord = getUserProfile(landlordUid)
             logActivity(
                 type = "landlord_verified",
                 title = "Landlord verified successfully",
                 subtitle = "${landlord?.fullName ?: "A landlord"} has been verified"
             )
+        }
+
+        // NEW — notify the landlord's device of the outcome
+        when (status) {
+            VerificationStatus.VERIFIED -> FcmService.sendNotification(
+                landlord?.fcmToken.orEmpty(),
+                "Account Verified",
+                "Your landlord account has been verified! You can now post listings."
+            )
+            VerificationStatus.REJECTED -> FcmService.sendNotification(
+                landlord?.fcmToken.orEmpty(),
+                "Verification Rejected",
+                "Your documents could not be verified. Reason: ${rejectionReason.ifBlank { "Not specified" }}"
+            )
+            else -> Unit
         }
     }
 
@@ -118,6 +159,14 @@ class FirebaseRepository {
                 "suspensionReason" to reason
             )
         ).await()
+
+        // NEW — notify the user's device
+        val user = getUserProfile(uid)
+        FcmService.sendNotification(
+            user?.fcmToken.orEmpty(),
+            "Account Suspended",
+            "Your account has been suspended. Reason: ${reason.ifBlank { "Not specified" }}"
+        )
     }
 
     suspend fun unsuspendUser(uid: String) {
@@ -127,6 +176,14 @@ class FirebaseRepository {
                 "suspensionReason" to ""
             )
         ).await()
+
+        // NEW — notify the user's device
+        val user = getUserProfile(uid)
+        FcmService.sendNotification(
+            user?.fcmToken.orEmpty(),
+            "Account Reinstated",
+            "Your account has been unsuspended. You can log in normally again."
+        )
     }
 
     /**
@@ -143,6 +200,14 @@ class FirebaseRepository {
                 "idResubmitted" to false
             )
         ).await()
+
+        // NEW — notify the student's device
+        val student = getUserProfile(uid)
+        FcmService.sendNotification(
+            student?.fcmToken.orEmpty(),
+            "School ID Flagged",
+            "Your school ID needs to be resubmitted. Reason: ${reason.ifBlank { "Not specified" }}"
+        )
     }
 
     suspend fun unflagStudentId(uid: String) {
@@ -196,12 +261,28 @@ class FirebaseRepository {
         }
         db().collection("users").document(uid).update(updates).await()
 
+        val student = getUserProfile(uid)
+
         if (approved) {
-            val student = getUserProfile(uid)
             logActivity(
                 type = "student_id_reverified",
                 title = "Student ID re-verified",
                 subtitle = "${student?.fullName ?: "A student"}'s resubmitted ID was approved"
+            )
+        }
+
+        // NEW — notify the student's device of the outcome
+        if (approved) {
+            FcmService.sendNotification(
+                student?.fcmToken.orEmpty(),
+                "ID Verified",
+                "Your resubmitted school ID has been approved."
+            )
+        } else {
+            FcmService.sendNotification(
+                student?.fcmToken.orEmpty(),
+                "Resubmission Rejected",
+                "Your resubmitted school ID needs another look. Reason: ${newReason.ifBlank { "Not specified" }}"
             )
         }
     }
