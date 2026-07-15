@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/landlord_nav_graph"
+    app:startDestination="@id/myListingsFragment">
+
+    <fragment android:id="@+id/myListingsFragment"
+        android:name="com.avla.app.ui.listings.MyListingsFragment" android:label="My Listings">
+
+        <action
+            android:id="@+id/action_myListingsFragment_to_landlordManageListingFragment"
+            app:destination="@id/landlordManageListingFragment" />
+
+    </fragment>
+
+    <fragment android:id="@+id/postListingFragment"
+        android:name="com.avla.app.ui.listings.PostListingFragment" android:label="Post Listing"/>
+
+    <fragment android:id="@+id/profileFragment"
+        android:name="com.avla.app.ui.profile.ProfileFragment" android:label="Profile"/>
+
+    <fragment android:id="@+id/landlordManageListingFragment"
+        android:name="com.avla.app.ui.listings.LandlordManageListingFragment" android:label="Manage Listing"/>
+
+    <fragment android:id="@+id/aboutFragment"
+        android:name="com.avla.app.ui.profile.AboutFragment"
+        android:label="About AVLA" />
+
+</navigation>

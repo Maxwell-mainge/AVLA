@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/adminOverviewFragment"  android:title="Overview"              android:icon="@android:drawable/ic_menu_view"/>
+        <item android:id="@+id/adminPendingFragment"  android:title="Pending Verifications" android:icon="@android:drawable/ic_dialog_info"/>
+        <item android:id="@+id/adminListingsFragment" android:title="All Listings"          android:icon="@android:drawable/ic_menu_manage"/>
+        <item android:id="@+id/adminUsersFragment"    android:title="All Users"             android:icon="@android:drawable/ic_menu_myplaces"/>
+        <item android:id="@+id/adminProfileFragment"  android:title="Profile"               android:icon="@android:drawable/ic_menu_myplaces"/>
+    </group>
+    <item android:id="@+id/admin_logout" android:title="Logout" android:icon="@android:drawable/ic_lock_power_off"/>
+</menu>

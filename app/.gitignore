@@ -1,0 +1,11 @@
+# Ignore Firebase keys
+google-services.json
+
+# Standard Android files to ignore
+.idea/
+.gradle/
+/build/
+local.properties
+*.iml
+# Block FCM key in raw folder
+app/src/main/res/raw/
