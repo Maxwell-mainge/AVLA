@@ -76,8 +76,10 @@ id btnAdminDelete
 id btnApprove
 id btnCall
 id btnChangePassword
+id btnClearDateFilter
 id btnClearFilters
 id btnContinue
+id btnDateFilter
 id btnDeleteListing
 id btnEditPhotos
 id btnLandlord
@@ -105,10 +107,12 @@ id cardListings
 id cardPending
 id cardUsers
 id chipAll
+id chipFlagged
 id chipGroup
 id chipLandlords
 id chipPending
 id chipStudents
+id chipSuspended
 id chipVerified
 id dividerLine
 id etAmenities
@@ -156,6 +160,7 @@ id linkFirebase
 id linkHauzisha
 id linkRightmove
 id listingDetailFragment
+id llDateFilterRow
 id llDotsIndicator
 id llLandlordInfo
 id llResubmitForm
@@ -215,6 +220,7 @@ id tvAvatarInitial
 id tvBedrooms
 id tvCampus
 id tvCount
+id tvDateFilterActive
 id tvDates
 id tvDescription
 id tvDetail

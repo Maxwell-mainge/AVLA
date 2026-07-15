@@ -150,6 +150,24 @@ class AdminViewModel : ViewModel() {
         }
     }
 
+    /**
+     * NEW — admin's decision on a student's resubmitted school ID.
+     * approved=true clears the flag entirely; approved=false keeps them
+     * flagged with a new reason and routes them back to the resubmit form
+     * (idResubmitted resets to false) next time they log in.
+     */
+    fun reviewResubmittedStudentId(uid: String, approved: Boolean, newReason: String = "") {
+        viewModelScope.launch {
+            try {
+                repo.reviewResubmittedStudentId(uid, approved, newReason)
+                _actionState.value = UiState.Success(
+                    if (approved) "Resubmission approved" else "Resubmission rejected"
+                )
+                loadAllUsers()
+            } catch (e: Exception) { _actionState.value = UiState.Error(e.message ?: "Error") }
+        }
+    }
+
     fun deleteListing(listingId: String) {
         viewModelScope.launch {
             try {

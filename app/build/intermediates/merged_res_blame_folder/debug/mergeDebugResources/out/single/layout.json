@@ -1,134 +1,130 @@
 [
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\fragment_admin_pending.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_admin_pending.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/fragment_admin_overview.xml",
+        "source": "com.avla.app-main-61:/layout/fragment_admin_overview.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\item_recent_activity.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\item_recent_activity.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/item_image_slider.xml",
+        "source": "com.avla.app-main-61:/layout/item_image_slider.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\activity_auth.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\activity_auth.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/nav_header_admin.xml",
+        "source": "com.avla.app-main-61:/layout/nav_header_admin.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\item_image_slider.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\item_image_slider.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/fragment_search.xml",
+        "source": "com.avla.app-main-61:/layout/fragment_search.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\fragment_favorites.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_favorites.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/fragment_student_register.xml",
+        "source": "com.avla.app-main-61:/layout/fragment_student_register.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\fragment_student_id_resubmit.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_student_id_resubmit.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/item_user.xml",
+        "source": "com.avla.app-main-61:/layout/item_user.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\fragment_landlord_pending.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_landlord_pending.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/fragment_landlord_register.xml",
+        "source": "com.avla.app-main-61:/layout/fragment_landlord_register.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\item_listing_grid.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\item_listing_grid.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/fragment_my_listings.xml",
+        "source": "com.avla.app-main-61:/layout/fragment_my_listings.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\fragment_verify_email.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_verify_email.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/activity_main.xml",
+        "source": "com.avla.app-main-61:/layout/activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\nav_header_admin.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\nav_header_admin.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/fragment_verify_email.xml",
+        "source": "com.avla.app-main-61:/layout/fragment_verify_email.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\fragment_admin_overview.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_admin_overview.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/fragment_listing_detail.xml",
+        "source": "com.avla.app-main-61:/layout/fragment_listing_detail.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\item_pending_landlord.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\item_pending_landlord.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/item_pending_landlord.xml",
+        "source": "com.avla.app-main-61:/layout/item_pending_landlord.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\fragment_admin_listings.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_admin_listings.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/fragment_profile.xml",
+        "source": "com.avla.app-main-61:/layout/fragment_profile.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\activity_main.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\activity_main.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/fragment_register.xml",
+        "source": "com.avla.app-main-61:/layout/fragment_register.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\fragment_landlord_register.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_landlord_register.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/activity_auth.xml",
+        "source": "com.avla.app-main-61:/layout/activity_auth.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\activity_admin.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\activity_admin.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/item_listing_grid.xml",
+        "source": "com.avla.app-main-61:/layout/item_listing_grid.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\nav_header.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\nav_header.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/fragment_admin_profile.xml",
+        "source": "com.avla.app-main-61:/layout/fragment_admin_profile.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\fragment_login.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_login.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/fragment_favorites.xml",
+        "source": "com.avla.app-main-61:/layout/fragment_favorites.xml"
+    },
+    {
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/fragment_about.xml",
+        "source": "com.avla.app-main-61:/layout/fragment_about.xml"
     },
     {
         "merged": "com.avla.app-mergeDebugResources-58:/layout/fragment_student_id_resubmit.xml",
         "source": "com.avla.app-main-61:/layout/fragment_student_id_resubmit.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\fragment_role_select.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_role_select.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/nav_header.xml",
+        "source": "com.avla.app-main-61:/layout/nav_header.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\fragment_student_register.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_student_register.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/fragment_login.xml",
+        "source": "com.avla.app-main-61:/layout/fragment_login.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\item_user.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\item_user.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/fragment_post_listing.xml",
+        "source": "com.avla.app-main-61:/layout/fragment_post_listing.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\fragment_profile.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_profile.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/fragment_role_select.xml",
+        "source": "com.avla.app-main-61:/layout/fragment_role_select.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\fragment_admin_users.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_admin_users.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/fragment_admin_pending.xml",
+        "source": "com.avla.app-main-61:/layout/fragment_admin_pending.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\fragment_my_listings.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_my_listings.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/fragment_landlord_pending.xml",
+        "source": "com.avla.app-main-61:/layout/fragment_landlord_pending.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\fragment_landlord_manage_listing.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_landlord_manage_listing.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/fragment_home.xml",
+        "source": "com.avla.app-main-61:/layout/fragment_home.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\fragment_post_listing.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_post_listing.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/fragment_admin_users.xml",
+        "source": "com.avla.app-main-61:/layout/fragment_admin_users.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\fragment_register.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_register.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/fragment_landlord_manage_listing.xml",
+        "source": "com.avla.app-main-61:/layout/fragment_landlord_manage_listing.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\fragment_home.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_home.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/activity_admin.xml",
+        "source": "com.avla.app-main-61:/layout/activity_admin.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\fragment_admin_profile.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_admin_profile.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/item_recent_activity.xml",
+        "source": "com.avla.app-main-61:/layout/item_recent_activity.xml"
     },
     {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\fragment_search.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_search.xml"
-    },
-    {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\fragment_about.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_about.xml"
-    },
-    {
-        "merged": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-mergeDebugResources-58:\\layout\\fragment_listing_detail.xml",
-        "source": "C:\\Users\\maing\\.gradle\\daemon\\9.0.0\\com.avla.app-main-61:\\layout\\fragment_listing_detail.xml"
+        "merged": "com.avla.app-mergeDebugResources-58:/layout/fragment_admin_listings.xml",
+        "source": "com.avla.app-main-61:/layout/fragment_admin_listings.xml"
     }
 ]

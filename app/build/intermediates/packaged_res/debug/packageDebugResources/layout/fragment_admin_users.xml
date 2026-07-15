@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey_light"
@@ -73,8 +74,67 @@
                 android:layout_height="wrap_content"
                 android:text="Pending"/>
 
+            <!-- NEW — students whose school ID is flagged (View→resubmit pipeline) -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipFlagged"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Flagged"/>
+
+            <!-- NEW — any suspended user, regardless of role -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSuspended"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Suspended"/>
+
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
+
+    <!-- NEW — date range filter row -->
+    <LinearLayout
+        android:id="@+id/llDateFilterRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="4dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDateFilter"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter by date"
+            android:textAllCaps="false"
+            android:textColor="@color/avla_green"
+            app:icon="@android:drawable/ic_menu_my_calendar"
+            app:iconTint="@color/avla_green"/>
+
+        <TextView
+            android:id="@+id/tvDateFilterActive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/avla_green"
+            android:textSize="13sp"
+            android:visibility="gone"
+            tools:ignore="HardcodedText"/>
+
+        <ImageButton
+            android:id="@+id/btnClearDateFilter"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="4dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Clear date filter"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:visibility="gone"/>
+
+    </LinearLayout>
 
     <!-- User count -->
     <TextView

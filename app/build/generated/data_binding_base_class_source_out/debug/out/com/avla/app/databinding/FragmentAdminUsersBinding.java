@@ -4,6 +4,7 @@ package com.avla.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.avla.app.R;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.textfield.TextInputEditText;
@@ -25,7 +27,16 @@ public final class FragmentAdminUsersBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
+  public final ImageButton btnClearDateFilter;
+
+  @NonNull
+  public final MaterialButton btnDateFilter;
+
+  @NonNull
   public final Chip chipAll;
+
+  @NonNull
+  public final Chip chipFlagged;
 
   @NonNull
   public final ChipGroup chipGroup;
@@ -40,10 +51,16 @@ public final class FragmentAdminUsersBinding implements ViewBinding {
   public final Chip chipStudents;
 
   @NonNull
+  public final Chip chipSuspended;
+
+  @NonNull
   public final Chip chipVerified;
 
   @NonNull
   public final TextInputEditText etSearch;
+
+  @NonNull
+  public final LinearLayout llDateFilterRow;
 
   @NonNull
   public final ProgressBar progressBar;
@@ -54,21 +71,34 @@ public final class FragmentAdminUsersBinding implements ViewBinding {
   @NonNull
   public final TextView tvCount;
 
-  private FragmentAdminUsersBinding(@NonNull LinearLayout rootView, @NonNull Chip chipAll,
-      @NonNull ChipGroup chipGroup, @NonNull Chip chipLandlords, @NonNull Chip chipPending,
-      @NonNull Chip chipStudents, @NonNull Chip chipVerified, @NonNull TextInputEditText etSearch,
-      @NonNull ProgressBar progressBar, @NonNull RecyclerView rvUsers, @NonNull TextView tvCount) {
+  @NonNull
+  public final TextView tvDateFilterActive;
+
+  private FragmentAdminUsersBinding(@NonNull LinearLayout rootView,
+      @NonNull ImageButton btnClearDateFilter, @NonNull MaterialButton btnDateFilter,
+      @NonNull Chip chipAll, @NonNull Chip chipFlagged, @NonNull ChipGroup chipGroup,
+      @NonNull Chip chipLandlords, @NonNull Chip chipPending, @NonNull Chip chipStudents,
+      @NonNull Chip chipSuspended, @NonNull Chip chipVerified, @NonNull TextInputEditText etSearch,
+      @NonNull LinearLayout llDateFilterRow, @NonNull ProgressBar progressBar,
+      @NonNull RecyclerView rvUsers, @NonNull TextView tvCount,
+      @NonNull TextView tvDateFilterActive) {
     this.rootView = rootView;
+    this.btnClearDateFilter = btnClearDateFilter;
+    this.btnDateFilter = btnDateFilter;
     this.chipAll = chipAll;
+    this.chipFlagged = chipFlagged;
     this.chipGroup = chipGroup;
     this.chipLandlords = chipLandlords;
     this.chipPending = chipPending;
     this.chipStudents = chipStudents;
+    this.chipSuspended = chipSuspended;
     this.chipVerified = chipVerified;
     this.etSearch = etSearch;
+    this.llDateFilterRow = llDateFilterRow;
     this.progressBar = progressBar;
     this.rvUsers = rvUsers;
     this.tvCount = tvCount;
+    this.tvDateFilterActive = tvDateFilterActive;
   }
 
   @Override
@@ -98,9 +128,27 @@ public final class FragmentAdminUsersBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btnClearDateFilter;
+      ImageButton btnClearDateFilter = ViewBindings.findChildViewById(rootView, id);
+      if (btnClearDateFilter == null) {
+        break missingId;
+      }
+
+      id = R.id.btnDateFilter;
+      MaterialButton btnDateFilter = ViewBindings.findChildViewById(rootView, id);
+      if (btnDateFilter == null) {
+        break missingId;
+      }
+
       id = R.id.chipAll;
       Chip chipAll = ViewBindings.findChildViewById(rootView, id);
       if (chipAll == null) {
+        break missingId;
+      }
+
+      id = R.id.chipFlagged;
+      Chip chipFlagged = ViewBindings.findChildViewById(rootView, id);
+      if (chipFlagged == null) {
         break missingId;
       }
 
@@ -128,6 +176,12 @@ public final class FragmentAdminUsersBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.chipSuspended;
+      Chip chipSuspended = ViewBindings.findChildViewById(rootView, id);
+      if (chipSuspended == null) {
+        break missingId;
+      }
+
       id = R.id.chipVerified;
       Chip chipVerified = ViewBindings.findChildViewById(rootView, id);
       if (chipVerified == null) {
@@ -137,6 +191,12 @@ public final class FragmentAdminUsersBinding implements ViewBinding {
       id = R.id.etSearch;
       TextInputEditText etSearch = ViewBindings.findChildViewById(rootView, id);
       if (etSearch == null) {
+        break missingId;
+      }
+
+      id = R.id.llDateFilterRow;
+      LinearLayout llDateFilterRow = ViewBindings.findChildViewById(rootView, id);
+      if (llDateFilterRow == null) {
         break missingId;
       }
 
@@ -158,9 +218,16 @@ public final class FragmentAdminUsersBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentAdminUsersBinding((LinearLayout) rootView, chipAll, chipGroup,
-          chipLandlords, chipPending, chipStudents, chipVerified, etSearch, progressBar, rvUsers,
-          tvCount);
+      id = R.id.tvDateFilterActive;
+      TextView tvDateFilterActive = ViewBindings.findChildViewById(rootView, id);
+      if (tvDateFilterActive == null) {
+        break missingId;
+      }
+
+      return new FragmentAdminUsersBinding((LinearLayout) rootView, btnClearDateFilter,
+          btnDateFilter, chipAll, chipFlagged, chipGroup, chipLandlords, chipPending, chipStudents,
+          chipSuspended, chipVerified, etSearch, llDateFilterRow, progressBar, rvUsers, tvCount,
+          tvDateFilterActive);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
