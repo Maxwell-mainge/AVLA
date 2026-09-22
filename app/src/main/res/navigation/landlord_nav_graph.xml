@@ -26,4 +26,16 @@
         android:name="com.avla.app.ui.profile.AboutFragment"
         android:label="About AVLA" />
 
+    <!-- NEW — landlord wallet: pending/available balance, withdraw,
+         transaction history. Reached from Profile's "Wallet" button. -->
+    <fragment android:id="@+id/landlordWalletFragment"
+        android:name="com.avla.app.ui.listings.LandlordWalletFragment"
+        android:label="Wallet" />
+
+    <!-- NEW — read-only "who reserved my units" view, reached from the
+         Wallet screen's "View Reservations" link. -->
+    <fragment android:id="@+id/landlordReservationsFragment"
+        android:name="com.avla.app.ui.listings.LandlordReservationsFragment"
+        android:label="Reservations" />
+
 </navigation>

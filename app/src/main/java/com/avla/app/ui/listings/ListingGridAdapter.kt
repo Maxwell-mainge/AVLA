@@ -76,6 +76,17 @@ class ListingGridAdapter(
             val isNew = (System.currentTimeMillis() - listing.createdAt) <= sevenDaysMillis
             binding.tvNewBadge.visibility = if (isNew) View.VISIBLE else View.GONE
 
+            // NEW — "X of Y available" for multi-unit listings only; a
+            // single-unit listing (the common case) shows nothing extra here,
+            // same as before this feature existed.
+            if (listing.totalUnits > 1) {
+                binding.tvUnitsAvailable.visibility = View.VISIBLE
+                binding.tvUnitsAvailable.text =
+                    "${listing.unitsAvailable} of ${listing.totalUnits} units available"
+            } else {
+                binding.tvUnitsAvailable.visibility = View.GONE
+            }
+
             loadImage(listing.imageUrls.firstOrNull())
 
             binding.root.setOnClickListener { onItemClick(listing) }

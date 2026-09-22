@@ -8,6 +8,13 @@
         android:title="Post"
         android:icon="@android:drawable/ic_menu_add" />
 
+    <!-- NEW — landlord's escrow wallet, moved here from the Profile screen
+         since a landlord only has a handful of destinations and this is
+         a frequent-enough action to earn a permanent tab. -->
+    <item android:id="@+id/landlordWalletFragment"
+        android:title="Wallet"
+        android:icon="@drawable/ic_wallet" />
+
     <item android:id="@+id/profileFragment"
         android:title="Profile"
         android:icon="@android:drawable/ic_menu_myplaces" />

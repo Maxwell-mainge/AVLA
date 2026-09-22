@@ -45,7 +45,7 @@ class LandlordPendingFragment : Fragment() {
             // Resubmit mode: the landlord already has an account, so the
             // register form pre-fills their existing details and only lets
             // them fix documents/location — it no longer tries to create a
-            // brand new Firebase account with the same email.
+            // brand-new Firebase account with the same email.
             val bundle = Bundle().apply { putBoolean("RESUBMIT_MODE", true) }
             findNavController().navigate(R.id.landlordRegisterFragment, bundle)
         }

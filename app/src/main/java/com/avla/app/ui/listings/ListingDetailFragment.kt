@@ -40,6 +40,9 @@ class ListingDetailFragment : Fragment() {
         return binding.root
     }
 
+    private var listingId = ""
+    private var isAdmin = false
+
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?
@@ -47,15 +50,23 @@ class ListingDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Extract string data tracking identifier directly out of the standard platform Bundle
-        val listingId = arguments?.getString("listingId") ?: ""
-        val isAdmin = arguments?.getBoolean("isAdmin", false) ?: false
+        listingId = arguments?.getString("listingId") ?: ""
+        isAdmin = arguments?.getBoolean("isAdmin", false) ?: false
+    }
+
+    // NEW — reload every time this screen becomes visible again, not just
+    // once. Without this, popping back here after paying a deposit (or
+    // after the 48hr auto-settle changed something elsewhere) showed
+    // whatever unitsAvailable/paused state was fetched before — stale.
+    override fun onResume() {
+        super.onResume()
         loadListing(listingId, isAdmin)
         loadInterestCount(listingId)
     }
 
     private fun loadListing(id: String, isAdmin: Boolean) {
         if (id.isBlank()) {
-            binding.root.showSnackbar("Listing ID is missing")
+            if (_binding != null) binding.root.showSnackbar("Listing ID is missing")
             return
         }
 
@@ -65,6 +76,8 @@ class ListingDetailFragment : Fragment() {
             .document(id)
             .get()
             .addOnSuccessListener { snapshot ->
+                if (_binding == null) return@addOnSuccessListener // view destroyed before this returned
+
                 val listing = snapshot.toObject(Listing::class.java)
 
                 if (listing == null) {
@@ -75,8 +88,31 @@ class ListingDetailFragment : Fragment() {
                 showListing(listing, isAdmin)
             }
             .addOnFailureListener {
-                binding.root.showSnackbar("Failed loading listing")
+                if (_binding != null) binding.root.showSnackbar("Failed loading listing")
             }
+    }
+
+    // NEW — overrides the Reserve & Pay button into a distinct "already
+    // reserved by you" state, so it can't look identical to a fresh,
+    // payable listing right after a student just paid a deposit on it.
+    private fun checkOwnActiveReservation(listingId: String) {
+        val studentUid = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid ?: return
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val existing = repo.fetchActiveReservation(listingId, studentUid)
+                if (_binding == null || existing == null) return@launch
+
+                binding.btnReserve.isEnabled = true
+                binding.btnReserve.text = "Reservation Pending — Tap to View"
+                binding.btnReserve.setOnClickListener {
+                    findNavController().navigate(R.id.myReservationsFragment)
+                }
+            } catch (_: Exception) {
+                // Silently skip — if this check fails, the button just stays
+                // in its normal payable state rather than blocking the screen.
+            }
+        }
     }
 
     private fun loadInterestCount(id: String) {
@@ -152,6 +188,52 @@ class ListingDetailFragment : Fragment() {
         binding.tvBedrooms.text = "${listing.bedrooms} bedroom"
         binding.tvDescription.text = listing.description
         binding.tvAmenities.text = listing.amenities.joinToString(" • ")
+
+        // NEW — multi-unit availability status, same "hide for single unit" rule as the card
+        if (listing.totalUnits > 1) {
+            binding.tvUnitsAvailable.visibility = View.VISIBLE
+            binding.tvUnitsAvailable.text =
+                "${listing.unitsAvailable} of ${listing.totalUnits} units available"
+        } else {
+            binding.tvUnitsAvailable.visibility = View.GONE
+        }
+
+        // NEW — Reserve & Pay entry point; students only, reflects
+        // sold-out/paused state from the multi-unit escrow design.
+        if (isAdmin) {
+            binding.btnReserve.visibility = View.GONE
+        } else {
+            binding.btnReserve.visibility = View.VISIBLE
+            when {
+                listing.paused -> {
+                    binding.btnReserve.isEnabled = false
+                    binding.btnReserve.text = "Not Available Right Now"
+                }
+                listing.unitsAvailable <= 0 -> {
+                    binding.btnReserve.isEnabled = false
+                    binding.btnReserve.text = "Fully Booked"
+                }
+                else -> {
+                    binding.btnReserve.isEnabled = true
+                    binding.btnReserve.text = "Reserve • Pay KSh ${"%,d".format(listing.depositKsh)} Deposit"
+                    binding.btnReserve.setOnClickListener {
+                        val bundle = Bundle().apply {
+                            putString("listingId", listing.id)
+                            putString("listingTitle", listing.title)
+                            putLong("depositKsh", listing.depositKsh)
+                        }
+                        findNavController().navigate(R.id.payDepositFragment, bundle)
+                    }
+                }
+            }
+            // NEW — checked regardless of which branch above ran: a listing
+            // can show "Fully Booked" for everyone else while still being
+            // THIS student's own pending reservation (e.g. a single-unit
+            // listing they just reserved, revisited via My Reservations'
+            // "View Full Listing" link). When that's the case, override
+            // whatever text/state was just set — this always wins.
+            checkOwnActiveReservation(listing.id)
+        }
 
         val adapter = ImageSliderAdapter(listing.imageUrls)
         binding.vpImages.adapter = adapter

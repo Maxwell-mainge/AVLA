@@ -12,6 +12,13 @@
         android:title="Favorites"
         android:icon="@drawable/ic_favorite" />
 
+    <!-- NEW — moved out of Profile into its own tab: a time-sensitive
+         escrow follow-up (48hr confirm/reject window) doesn't belong
+         buried in a settings-style screen. -->
+    <item android:id="@+id/myReservationsFragment"
+        android:title="Reservations"
+        android:icon="@android:drawable/ic_menu_my_calendar" />
+
     <item android:id="@+id/profileFragment"
         android:title="Profile"
         android:icon="@android:drawable/ic_menu_myplaces" />

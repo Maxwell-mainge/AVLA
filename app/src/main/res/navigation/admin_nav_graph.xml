@@ -10,6 +10,11 @@
     <fragment android:id="@+id/adminPendingFragment"
         android:name="com.avla.app.ui.admin.AdminPendingFragment" android:label="Pending Verifications"/>
 
+    <!-- NEW — platform-wide wallet transaction feed. Replaces adminPendingFragment's
+         bottom-nav tab (that screen is still reachable from Overview's Pending card). -->
+    <fragment android:id="@+id/adminTransactionsFragment"
+        android:name="com.avla.app.ui.admin.AdminTransactionsFragment" android:label="Transactions"/>
+
     <fragment android:id="@+id/adminListingsFragment"
         android:name="com.avla.app.ui.admin.AdminListingsFragment" android:label="All Listings">
 

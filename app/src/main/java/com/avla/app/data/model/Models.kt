@@ -16,6 +16,17 @@ enum class PropertyType {
     }
 }
 
+// NEW — status of a single unit reservation within the escrow flow
+enum class ReservationStatus { RESERVED, CONFIRMED, REJECTED }
+
+// NEW — type of entry in a landlord's wallet transaction history
+// PLATFORM_FEE — NEW — the simulated flat fee a landlord pays to post a
+// listing; unlike the other three types, this money doesn't come from or
+// go to pendingBalanceKsh/availableBalanceKsh at all — it's platform
+// revenue, not landlord earnings, so it's logged here purely for visibility
+// in the Admin's platform-wide Transactions feed.
+enum class TransactionType { DEPOSIT_HELD, SETTLED, REFUNDED, WITHDRAWN, PLATFORM_FEE }
+
 data class AppUser(
     val uid: String = "",
     val fullName: String = "",
@@ -42,7 +53,9 @@ data class AppUser(
     val verifiedAt: Long? = null,           // when a landlord was approved
     val rejectedAt: Long? = null,           // when a landlord was last rejected
     val favoriteListingIds: List<String> = emptyList(),
-    val fcmToken: String = ""               // NEW — this device's push notification token
+    val fcmToken: String = "",              // NEW — this device's push notification token
+    val pendingBalanceKsh: Long = 0,        // NEW — landlord funds held in escrow, not yet withdrawable
+    val availableBalanceKsh: Long = 0       // NEW — landlord funds settled and withdrawable
 )
 
 data class Listing(
@@ -64,6 +77,10 @@ data class Listing(
     @get:PropertyName("mockData")  @set:PropertyName("mockData")  var mockData: Boolean = false,
     val createdAt: Long = System.currentTimeMillis(),
     val favoriteListingIds: List<String> = emptyList(),
+    val totalUnits: Int = 1,                // NEW — number of identical units this listing represents
+    val unitsAvailable: Int = 1,            // NEW — units not currently RESERVED or taken
+    val depositKsh: Long = 0,               // NEW — reservation deposit amount, in KSh
+    @get:PropertyName("paused") @set:PropertyName("paused") var paused: Boolean = false, // NEW — landlord override, independent of unitsAvailable
 )
 {
 }
@@ -74,4 +91,34 @@ data class ListingFilter(
     val propertyType: PropertyType? = null,
     val location: String = "",
     val landlordUid: String? = null
+)
+
+// NEW — one unit-level reservation created when a student pays a deposit
+data class Reservation(
+    val id: String = "",
+    val listingId: String = "",
+    val listingTitle: String = "", // denormalized for display, same pattern as landlordName on Listing
+    val landlordUid: String = "",
+    val landlordPhone: String = "", // so the reservation card can show/call the landlord directly
+    val studentUid: String = "",
+    val studentName: String = "",
+    val studentPhone: String = "", // NEW — so a landlord can see/call who reserved their unit
+    val depositKsh: Long = 0,
+    val status: ReservationStatus = ReservationStatus.RESERVED,
+    val reservedAt: Long = System.currentTimeMillis(),
+    val resolvedAt: Long? = null,           // set when CONFIRMED or REJECTED
+    val rejectionReason: String = ""
+)
+
+// NEW — one entry in a landlord's wallet transaction history
+data class WalletTransaction(
+    val id: String = "",
+    val landlordUid: String = "",
+    val landlordName: String = "", // NEW — denormalized so admin's platform-wide view can show who each entry belongs to
+    val listingId: String = "",
+    val reservationId: String = "",
+    val type: TransactionType = TransactionType.DEPOSIT_HELD,
+    val amountKsh: Long = 0,
+    val createdAt: Long = System.currentTimeMillis(),
+    val note: String = ""
 )

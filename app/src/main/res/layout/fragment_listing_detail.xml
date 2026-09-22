@@ -108,6 +108,20 @@
                 android:textColor="@color/grey_text"
                 android:textSize="14sp" />
 
+            <!-- NEW — multi-unit availability status; hidden for single-unit
+                 listings so the screen looks exactly as it did before this
+                 feature, same convention as the grid card. -->
+            <TextView
+                android:id="@+id/tvUnitsAvailable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/avla_green"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                tools:text="3 of 6 units available" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -178,6 +192,26 @@
                     android:textColor="@color/white" />
 
             </LinearLayout>
+
+            <!-- NEW — simulated escrow reservation entry point; hidden for
+                 admin viewers, disabled/relabeled when sold out or paused. -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnReserve"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="46dp"
+                android:layout_marginTop="12dp"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="12dp"
+                app:cornerRadius="23dp"
+                android:backgroundTint="@color/avla_green"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:textSize="13sp"
+                android:maxLines="2"
+                android:gravity="center"
+                android:textStyle="bold"
+                tools:text="Reserve \u2022 Pay KSh 1,000 Deposit" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAdminDelete"

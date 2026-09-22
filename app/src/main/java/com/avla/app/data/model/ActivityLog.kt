@@ -5,7 +5,7 @@ import com.google.firebase.Timestamp
 /**
  * One row in the "activity" Firestore collection.
  * Written whenever something admin-relevant happens (landlord registers,
- * listing gets published, verification approved, etc).
+ * listing gets published, verification approved, etc.).
  */
 data class ActivityLog(
     val id: String = "",

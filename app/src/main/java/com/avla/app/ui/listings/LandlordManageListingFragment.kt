@@ -60,14 +60,27 @@ class LandlordManageListingFragment : Fragment() {
     private fun setupUI(listing: Listing) {
         binding.tvManageTitle.text = "Manage: ${listing.title}"
         binding.etPrice.setText(listing.priceKsh.toString())
+        binding.etDescription.setText(listing.description) // NEW
+        binding.etDeposit.setText(listing.depositKsh.toString()) // NEW
 
-        binding.switchAvailability.isChecked = listing.available
-        updateStatusSubtext(listing.available)
+        // NEW — switch reflects "not paused" now, rather than the raw available
+        // flag alone, so it stays meaningful once a landlord has used this toggle.
+        val isAcceptingReservations = !listing.paused
+        binding.switchAvailability.isChecked = isAcceptingReservations
+        updateStatusSubtext(isAcceptingReservations, listing.unitsAvailable, listing.totalUnits)
 
+        // NEW — this switch now also drives the `paused` field (inverted:
+        // switch ON means NOT paused). `available` is kept in sync for
+        // backward compatibility with any code still reading it directly.
+        // Being "sold out" (unitsAvailable == 0) is now a SEPARATE, automatic
+        // reason a listing hides from feeds — see FirebaseRepository.fetchAllRaw().
         binding.switchAvailability.setOnCheckedChangeListener { _, isChecked: Boolean ->
-            updateStatusSubtext(isChecked)
+            updateStatusSubtext(isChecked, listing.unitsAvailable, listing.totalUnits)
             db.collection("listings").document(listing.id)
-                .update("available", isChecked)
+                .update(mapOf(
+                    "available" to isChecked,
+                    "paused" to !isChecked
+                ))
                 .addOnFailureListener { binding.root.showSnackbar("Failed to update status") }
         }
 
@@ -78,10 +91,32 @@ class LandlordManageListingFragment : Fragment() {
                 return@setOnClickListener
             }
 
+            // NEW — description and deposit are now editable too, not just
+            // price. Changing the deposit here only affects FUTURE
+            // reservations — FirebaseRepository.reserveUnit() copies the
+            // deposit amount onto each Reservation at creation time, so
+            // reservations already in progress keep whatever amount they
+            // were created with.
+            val newDescription = binding.etDescription.text.toString().trim()
+            if (newDescription.isBlank()) {
+                binding.root.showSnackbar("Description can't be empty")
+                return@setOnClickListener
+            }
+
+            val newDeposit = binding.etDeposit.text.toString().toLongOrNull()
+            if (newDeposit == null || newDeposit < 0) {
+                binding.root.showSnackbar("Please enter a valid deposit amount")
+                return@setOnClickListener
+            }
+
             db.collection("listings").document(listing.id)
-                .update("priceKsh", newPrice)
+                .update(mapOf(
+                    "priceKsh" to newPrice,
+                    "description" to newDescription,
+                    "depositKsh" to newDeposit
+                ))
                 .addOnSuccessListener {
-                    binding.root.showSnackbar("Price changes saved successfully!")
+                    binding.root.showSnackbar("Changes saved successfully!")
                 }
                 .addOnFailureListener { binding.root.showSnackbar("Failed to save changes") }
         }
@@ -239,11 +274,12 @@ class LandlordManageListingFragment : Fragment() {
     }
 
     @Suppress("SetTextI18n")
-    private fun updateStatusSubtext(isAvailableOnFeed: Boolean) {
-        binding.tvStatusSubtext.text = if (isAvailableOnFeed) {
-            "Available on student feeds"
-        } else {
-            "Hidden / Marked as Occupied"
+    private fun updateStatusSubtext(isAcceptingReservations: Boolean, unitsAvailable: Int = 1, totalUnits: Int = 1) {
+        binding.tvStatusSubtext.text = when {
+            !isAcceptingReservations -> "Paused — hidden from student feeds until you turn this back on"
+            unitsAvailable <= 0 && totalUnits > 1 -> "All $totalUnits units are booked — hidden automatically until a unit frees up"
+            totalUnits > 1 -> "Accepting reservations — $unitsAvailable of $totalUnits units free"
+            else -> "Available on student feeds"
         }
     }
 

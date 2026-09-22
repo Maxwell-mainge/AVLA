@@ -5,9 +5,9 @@
         android:icon="@drawable/ic_overview"
         android:title="Overview" />
     <item
-        android:id="@+id/adminPendingFragment"
-        android:icon="@drawable/ic_pending"
-        android:title="Pending" />
+        android:id="@+id/adminTransactionsFragment"
+        android:icon="@drawable/ic_wallet"
+        android:title="Transactions" />
     <item
         android:id="@+id/adminListingsFragment"
         android:icon="@drawable/ic_listings"

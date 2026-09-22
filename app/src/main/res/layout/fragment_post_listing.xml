@@ -83,18 +83,39 @@
                 android:textColor="@color/black"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- NEW — for buildings with several identical units, one listing
+             covers the whole batch instead of the landlord posting each
+             unit separately. -->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilBedrooms"
+            android:id="@+id/tilTotalUnits"
             style="@style/AVLA.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:hint="Number of Bedrooms">
+            android:hint="Number of Identical Units Available (e.g. 6)">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etBedrooms"
+                android:id="@+id/etTotalUnits"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
+                android:text="1"
+                android:textColor="@color/black"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- NEW — reservation deposit held in escrow when a student books
+             a unit; see FirebaseRepository.reserveUnit(). -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilDeposit"
+            style="@style/AVLA.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="Reservation Deposit (KSh, e.g. 1000)">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDeposit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
                 android:textColor="@color/black"/>
         </com.google.android.material.textfield.TextInputLayout>
 

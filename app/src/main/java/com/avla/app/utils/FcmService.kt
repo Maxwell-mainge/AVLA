@@ -43,7 +43,7 @@ object FcmService {
     /**
      * Sends a data-only push to a single device token. Data-only (no
      * top-level "notification" key) so onMessageReceived always fires in
-     * AvlaFirebaseMessagingService and we build the notification ourselves
+     * AvlaFirebaseMessagingService, and we build the notification ourselves
      * consistently, whether the app is foregrounded or backgrounded.
      *
      * Best-effort: failures are swallowed so a notification problem never

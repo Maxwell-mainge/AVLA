@@ -8,4 +8,4 @@ google-services.json
 local.properties
 *.iml
 # Block FCM key in raw folder
-app/src/main/res/raw/
+app/src/main/res/raw/*

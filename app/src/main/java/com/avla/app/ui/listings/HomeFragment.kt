@@ -29,6 +29,8 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: ListingGridAdapter
     private val uid get() = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
+    private var studentCampus = ""
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -37,7 +39,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val campus = arguments?.getString("campus") ?: ""
+        studentCampus = arguments?.getString("campus") ?: ""
 
         loadWelcomeName()
 
@@ -62,7 +64,7 @@ class HomeFragment : Fragment() {
                 is UiState.Success -> {
                     adapter.submitList(state.data)
                     binding.tvEmpty.visibility = if (state.data.isEmpty()) View.VISIBLE else View.GONE
-                    binding.tvListingCount.text = buildCountText(state.data, campus)
+                    binding.tvListingCount.text = buildCountText(state.data, studentCampus)
                 }
                 is UiState.Error -> binding.root.showSnackbar(state.message)
                 else -> Unit
@@ -73,8 +75,20 @@ class HomeFragment : Fragment() {
             adapter.updateFavoriteIds(ids)
         }
 
-        binding.swipeRefresh.setOnRefreshListener { viewModel.loadListingsByProximity(campus) }
-        viewModel.loadListingsByProximity(campus)
+        binding.swipeRefresh.setOnRefreshListener { viewModel.loadListingsByProximity(studentCampus) }
+    }
+
+    // NEW — was only loaded once in onViewCreated, so a listing's
+    // unitsAvailable/paused state changing (e.g. right after a student pays
+    // a deposit on it) didn't show up on Home until the app was fully
+    // restarted. onResume fires every time this screen becomes visible
+    // again, so the feed now reflects reality whenever the student returns
+    // to it — including the very first time, since onResume always follows
+    // onViewCreated.
+    override fun onResume() {
+        super.onResume()
+        if (_binding == null) return
+        viewModel.loadListingsByProximity(studentCampus)
         viewModel.loadFavoriteIds(uid)
     }
 

@@ -21,6 +21,18 @@
         android:name="com.avla.app.ui.listings.ListingDetailFragment"
         android:label="Listing Details" />
 
+    <!-- NEW — simulated M-Pesa deposit / reservation screen, reached from
+         ListingDetailFragment's "Reserve & Pay" button. -->
+    <fragment android:id="@+id/payDepositFragment"
+        android:name="com.avla.app.ui.listings.PayDepositFragment"
+        android:label="Reserve Unit" />
+
+    <!-- NEW — student's reservation list with Confirm/Reject actions,
+         reached from the Profile screen's "My Reservations" button. -->
+    <fragment android:id="@+id/myReservationsFragment"
+        android:name="com.avla.app.ui.listings.MyReservationsFragment"
+        android:label="My Reservations" />
+
     <fragment android:id="@+id/favoritesFragment"
         android:name="com.avla.app.ui.listings.FavoritesFragment"
         android:label="Favorites" />

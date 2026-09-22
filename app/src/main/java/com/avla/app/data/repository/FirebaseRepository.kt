@@ -6,6 +6,10 @@ import com.avla.app.data.model.Listing
 import com.avla.app.data.model.ListingFilter
 import com.avla.app.data.model.UserRole
 import com.avla.app.data.model.VerificationStatus
+import com.avla.app.data.model.Reservation
+import com.avla.app.data.model.ReservationStatus
+import com.avla.app.data.model.WalletTransaction
+import com.avla.app.data.model.TransactionType
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
@@ -226,7 +230,7 @@ class FirebaseRepository {
      * routed to the "under review" state until an admin explicitly approves or
      * rejects the resubmission via reviewResubmittedStudentId(). This mirrors
      * how landlord resubmission goes back to PENDING instead of straight to
-     * VERIFIED.
+     * -VERIFIED.
      */
     suspend fun resubmitStudentId(uid: String, newStudentIdDocLink: String) {
         db().collection("users").document(uid).update(
@@ -386,7 +390,7 @@ class FirebaseRepository {
 
     /**
      * Toggles favorite state for a listing. Returns the new state
-     * (true = now favorited, false = now un-favorited).
+     * (true = now favorite, false = now un-favorite).
      */
     suspend fun toggleFavorite(uid: String, listingId: String, currentlyFavorited: Boolean): Boolean {
         return if (currentlyFavorited) {
@@ -459,6 +463,11 @@ class FirebaseRepository {
      * Fetch all listings and determine availability by checking both
      * "available" and "isAvailable" field names from raw Firestore data.
      * This handles old seeded docs and new app-posted docs.
+     *
+     * NEW — a listing is now also hidden once its units run out
+     * (unitsAvailable <= 0, handled automatically by reserveUnit()) or when
+     * the landlord manually pauses it (paused == true) — two independent
+     * reasons, same visible outcome, per the multi-unit/escrow design.
      */
     private suspend fun fetchAllRaw(): List<Pair<Listing, Boolean>> {
         val snapshot = db().collection("listings").get().await()
@@ -467,7 +476,8 @@ class FirebaseRepository {
             // Check both possible field names for availability
             val isAvailableField = doc.getBoolean("isAvailable") ?: true
             val availableField   = doc.getBoolean("available")   ?: true
-            val isAvailable      = isAvailableField && availableField
+            val isAvailable = isAvailableField && availableField &&
+                    listing.unitsAvailable > 0 && !listing.paused
             Pair(listing, isAvailable)
         }
     }
@@ -525,6 +535,393 @@ class FirebaseRepository {
             .filter { filter.location.isBlank() || it.location.contains(filter.location, ignoreCase = true) }
             .filter { filter.landlordUid.isNullOrBlank() || it.landlordUid == filter.landlordUid }
             .sortedByDescending { it.createdAt }
+    }
+
+    // ═══════════════════════════════════════════════════════
+    // RESERVATIONS & ESCROW (NEW)
+    // Split-ledger escrow: a reservation deposit moves a landlord's
+    // pendingBalanceKsh up immediately, but only moves into their
+    // withdrawable availableBalanceKsh once the student confirms, or once
+    // the 48-hour window passes with no dispute (checked lazily — see
+    // settleExpiredReservations below — no background job required).
+    // Payment itself (STK push / B2C refund) is simulated: no real money
+    // moves, only these Firestore-side ledger fields.
+    // ═══════════════════════════════════════════════════════
+
+    private val settlementWindowMs = 48L * 60 * 60 * 1000
+
+    /**
+     * Student pays a deposit on a listing with at least one unit free.
+     * Atomically decrements unitsAvailable and creates the Reservation doc,
+     * so two students racing for the last unit can't both succeed — the
+     * loser's transaction sees unitsAvailable already at 0 and throws.
+     */
+    suspend fun reserveUnit(listingId: String, studentUid: String, studentName: String, studentPhone: String = ""): String {
+        val reservationRef = db().collection("reservations").document()
+        val listingRef = db().collection("listings").document(listingId)
+
+        var landlordUid = ""
+        var depositAmount = 0L
+
+        db().runTransaction { txn ->
+            val listingSnap = txn.get(listingRef)
+            val listing = listingSnap.toObject(Listing::class.java)
+                ?: throw IllegalStateException("Listing not found")
+
+            if (listing.paused) throw IllegalStateException("This listing isn't taking reservations right now")
+            if (listing.unitsAvailable <= 0) throw IllegalStateException("No units currently available")
+
+            landlordUid = listing.landlordUid
+            depositAmount = listing.depositKsh
+
+            val landlordRef = db().collection("users").document(landlordUid)
+            val landlordSnap = txn.get(landlordRef)
+            val pending = landlordSnap.getLong("pendingBalanceKsh") ?: 0L
+
+            txn.update(listingRef, "unitsAvailable", listing.unitsAvailable - 1)
+            txn.update(landlordRef, "pendingBalanceKsh", pending + depositAmount)
+
+            txn.set(reservationRef, Reservation(
+                id = reservationRef.id,
+                listingId = listingId,
+                listingTitle = listing.title,
+                landlordUid = landlordUid,
+                landlordPhone = listing.landlordPhone,
+                studentUid = studentUid,
+                studentName = studentName,
+                studentPhone = studentPhone,
+                depositKsh = depositAmount,
+                status = ReservationStatus.RESERVED,
+                reservedAt = System.currentTimeMillis()
+            ))
+
+            val txnRef = db().collection("walletTransactions").document()
+            txn.set(txnRef, WalletTransaction(
+                id = txnRef.id,
+                landlordUid = landlordUid,
+                landlordName = landlordSnap.getString("fullName") ?: "",
+                listingId = listingId,
+                reservationId = reservationRef.id,
+                type = TransactionType.DEPOSIT_HELD,
+                amountKsh = depositAmount,
+                createdAt = System.currentTimeMillis(),
+                note = "Deposit held for $studentName's reservation (simulated M-Pesa STK push)"
+            ))
+
+            Unit
+        }.await()
+
+        logActivity(
+            type = "unit_reserved",
+            title = "Unit reserved",
+            subtitle = "$studentName reserved a unit — KSh $depositAmount held"
+        )
+
+        val landlord = getUserProfile(landlordUid)
+        FcmService.sendNotification(
+            landlord?.fcmToken.orEmpty(),
+            "New Reservation",
+            "$studentName reserved a unit and paid a KSh $depositAmount deposit."
+        )
+        val student = getUserProfile(studentUid)
+        FcmService.sendNotification(
+            student?.fcmToken.orEmpty(),
+            "Deposit Held",
+            "Your KSh $depositAmount deposit is held. You have 48 hours to confirm or reject after viewing the unit."
+        )
+
+        return reservationRef.id
+    }
+
+    /**
+     * Moves a reservation's deposit from the landlord's pendingBalanceKsh into
+     * their withdrawable availableBalanceKsh. Called either when a student
+     * explicitly confirms, or lazily by settleExpiredReservations() once the
+     * 48-hour window has passed with no dispute. No-ops safely if the
+     * reservation was already resolved (e.g. rejected) before this ran.
+     */
+    suspend fun confirmReservation(reservationId: String) {
+        val reservationRef = db().collection("reservations").document(reservationId)
+
+        var landlordUid = ""
+        var depositAmount = 0L
+
+        db().runTransaction { txn ->
+            val snap = txn.get(reservationRef)
+            val reservation = snap.toObject(Reservation::class.java)
+                ?: throw IllegalStateException("Reservation not found")
+
+            if (reservation.status == ReservationStatus.RESERVED) {
+                landlordUid = reservation.landlordUid
+                depositAmount = reservation.depositKsh
+
+                val landlordRef = db().collection("users").document(landlordUid)
+                val landlordSnap = txn.get(landlordRef)
+                val pending = landlordSnap.getLong("pendingBalanceKsh") ?: 0L
+                val available = landlordSnap.getLong("availableBalanceKsh") ?: 0L
+
+                txn.update(landlordRef, mapOf(
+                    "pendingBalanceKsh" to (pending - depositAmount).coerceAtLeast(0),
+                    "availableBalanceKsh" to (available + depositAmount)
+                ))
+                txn.update(reservationRef, mapOf(
+                    "status" to ReservationStatus.CONFIRMED.name,
+                    "resolvedAt" to System.currentTimeMillis()
+                ))
+
+                val txnRef = db().collection("walletTransactions").document()
+                txn.set(txnRef, WalletTransaction(
+                    id = txnRef.id,
+                    landlordUid = landlordUid,
+                    landlordName = landlordSnap.getString("fullName") ?: "",
+                    listingId = reservation.listingId,
+                    reservationId = reservationId,
+                    type = TransactionType.SETTLED,
+                    amountKsh = depositAmount,
+                    createdAt = System.currentTimeMillis(),
+                    note = "Reservation confirmed — funds settled to available balance"
+                ))
+            }
+            Unit
+        }.await()
+
+        if (landlordUid.isBlank()) return // already resolved before this call — nothing to notify
+
+        logActivity(
+            type = "reservation_settled",
+            title = "Reservation settled",
+            subtitle = "KSh $depositAmount settled to landlord's available balance"
+        )
+
+        val landlord = getUserProfile(landlordUid)
+        FcmService.sendNotification(
+            landlord?.fcmToken.orEmpty(),
+            "Funds Settled",
+            "KSh $depositAmount has settled to your available balance."
+        )
+    }
+
+    /**
+     * Student rejects a unit after visiting (or before the 48-hour window
+     * runs out). Refunds the deposit (simulated M-Pesa B2C) by reversing the
+     * landlord's pendingBalanceKsh, and gives the unit back to the pool.
+     */
+    suspend fun rejectReservation(reservationId: String, reason: String) {
+        val reservationRef = db().collection("reservations").document(reservationId)
+
+        var landlordUid = ""
+        var studentUid = ""
+        var depositAmount = 0L
+
+        db().runTransaction { txn ->
+            val snap = txn.get(reservationRef)
+            val reservation = snap.toObject(Reservation::class.java)
+                ?: throw IllegalStateException("Reservation not found")
+
+            if (reservation.status == ReservationStatus.RESERVED) {
+                landlordUid = reservation.landlordUid
+                studentUid = reservation.studentUid
+                depositAmount = reservation.depositKsh
+
+                val landlordRef = db().collection("users").document(landlordUid)
+                val landlordSnap = txn.get(landlordRef)
+                val pending = landlordSnap.getLong("pendingBalanceKsh") ?: 0L
+
+                val listingRef = db().collection("listings").document(reservation.listingId)
+                val listingSnap = txn.get(listingRef)
+                val currentUnits = listingSnap.getLong("unitsAvailable") ?: 0L
+
+                txn.update(landlordRef, "pendingBalanceKsh", (pending - depositAmount).coerceAtLeast(0))
+                txn.update(listingRef, "unitsAvailable", currentUnits + 1)
+                txn.update(reservationRef, mapOf(
+                    "status" to ReservationStatus.REJECTED.name,
+                    "resolvedAt" to System.currentTimeMillis(),
+                    "rejectionReason" to reason
+                ))
+
+                val txnRef = db().collection("walletTransactions").document()
+                txn.set(txnRef, WalletTransaction(
+                    id = txnRef.id,
+                    landlordUid = landlordUid,
+                    landlordName = landlordSnap.getString("fullName") ?: "",
+                    listingId = reservation.listingId,
+                    reservationId = reservationId,
+                    type = TransactionType.REFUNDED,
+                    amountKsh = depositAmount,
+                    createdAt = System.currentTimeMillis(),
+                    note = "Reservation rejected — deposit refunded (simulated M-Pesa B2C). Reason: ${reason.ifBlank { "Not specified" }}"
+                ))
+            }
+            Unit
+        }.await()
+
+        if (landlordUid.isBlank()) return // already resolved before this call — nothing to notify
+
+        logActivity(
+            type = "reservation_rejected",
+            title = "Reservation rejected",
+            subtitle = "KSh $depositAmount refunded after rejection"
+        )
+
+        val landlord = getUserProfile(landlordUid)
+        FcmService.sendNotification(
+            landlord?.fcmToken.orEmpty(),
+            "Reservation Rejected",
+            "A reservation was rejected — the unit is available again."
+        )
+        val student = getUserProfile(studentUid)
+        FcmService.sendNotification(
+            student?.fcmToken.orEmpty(),
+            "Deposit Refunded",
+            "Your KSh $depositAmount deposit has been refunded."
+        )
+    }
+
+    /**
+     * Lazy settlement check — no Cloud Scheduler or background job needed.
+     * Called from fetchReservationsForLandlord() on every read, so the
+     * 48-hour window is honoured based on stored timestamps whether or not
+     * anyone had the app open while it elapsed.
+     */
+    private suspend fun settleExpiredReservations(landlordUid: String) {
+        val now = System.currentTimeMillis()
+        val expired = db().collection("reservations")
+            .whereEqualTo("landlordUid", landlordUid)
+            .whereEqualTo("status", ReservationStatus.RESERVED.name)
+            .get().await()
+            .toObjects(Reservation::class.java)
+            .filter { now - it.reservedAt >= settlementWindowMs }
+
+        expired.forEach { confirmReservation(it.id) }
+    }
+
+    suspend fun fetchReservationsForStudent(uid: String): List<Reservation> =
+        db().collection("reservations")
+            .whereEqualTo("studentUid", uid)
+            .get().await()
+            .toObjects(Reservation::class.java)
+            .sortedByDescending { it.reservedAt }
+
+    /**
+     * NEW — used by ListingDetailFragment to tell whether the CURRENT
+     * student already has a pending reservation on THIS listing, so the
+     * screen can show "Reservation Pending" instead of letting them pay for
+     * a second unit on a listing they've already reserved from. Equality-
+     * only compound query — no composite index needed.
+     */
+    suspend fun fetchActiveReservation(listingId: String, studentUid: String): Reservation? =
+        db().collection("reservations")
+            .whereEqualTo("listingId", listingId)
+            .whereEqualTo("studentUid", studentUid)
+            .whereEqualTo("status", ReservationStatus.RESERVED.name)
+            .get().await()
+            .toObjects(Reservation::class.java)
+            .firstOrNull()
+
+    suspend fun fetchReservationsForLandlord(uid: String): List<Reservation> {
+        settleExpiredReservations(uid)
+        return db().collection("reservations")
+            .whereEqualTo("landlordUid", uid)
+            .get().await()
+            .toObjects(Reservation::class.java)
+            .sortedByDescending { it.reservedAt }
+    }
+
+    suspend fun fetchWalletTransactions(landlordUid: String): List<WalletTransaction> =
+        db().collection("walletTransactions")
+            .whereEqualTo("landlordUid", landlordUid)
+            .get().await()
+            .toObjects(WalletTransaction::class.java)
+            .sortedByDescending { it.createdAt }
+
+    /**
+     * NEW — platform-wide transaction feed for the Admin "Transactions" tab
+     * (replaces the old bottom-nav Pending shortcut, which was redundant
+     * with the Overview dashboard's Pending card). Unlike
+     * fetchWalletTransactions(), this isn't scoped to one landlord.
+     */
+    suspend fun fetchAllWalletTransactions(): List<WalletTransaction> =
+        db().collection("walletTransactions")
+            .get().await()
+            .toObjects(WalletTransaction::class.java)
+            .sortedByDescending { it.createdAt }
+
+    /**
+     * Landlord withdraws from their settled, available balance. Simulated —
+     * logs a WITHDRAWN transaction and decrements the balance, standing in
+     * for a real M-Pesa B2C payout to the landlord's registered phone number.
+     */
+    suspend fun withdrawFunds(landlordUid: String, amountKsh: Long) {
+        val landlordRef = db().collection("users").document(landlordUid)
+
+        db().runTransaction { txn ->
+            val snap = txn.get(landlordRef)
+            val available = snap.getLong("availableBalanceKsh") ?: 0L
+            if (amountKsh <= 0 || amountKsh > available) {
+                throw IllegalStateException("Withdrawal amount exceeds available balance")
+            }
+            txn.update(landlordRef, "availableBalanceKsh", available - amountKsh)
+
+            val txnRef = db().collection("walletTransactions").document()
+            txn.set(txnRef, WalletTransaction(
+                id = txnRef.id,
+                landlordUid = landlordUid,
+                landlordName = snap.getString("fullName") ?: "",
+                listingId = "",
+                reservationId = "",
+                type = TransactionType.WITHDRAWN,
+                amountKsh = amountKsh,
+                createdAt = System.currentTimeMillis(),
+                note = "Simulated M-Pesa B2C payout to registered phone number"
+            ))
+            Unit
+        }.await()
+
+        logActivity(
+            type = "funds_withdrawn",
+            title = "Landlord withdrawal",
+            subtitle = "KSh $amountKsh withdrawn"
+        )
+
+        val landlord = getUserProfile(landlordUid)
+        FcmService.sendNotification(
+            landlord?.fcmToken.orEmpty(),
+            "Withdrawal Complete",
+            "Withdrawal of KSh $amountKsh to your M-Pesa is complete."
+        )
+    }
+
+    /**
+     * NEW — simulated flat fee a landlord pays to publish a listing, in
+     * response to feedback that only students were paying anything on the
+     * platform. Deliberately does NOT touch pendingBalanceKsh/
+     * availableBalanceKsh — this money leaves the landlord toward the
+     * platform, it isn't landlord earnings — so it's logged purely as a
+     * PLATFORM_FEE transaction for visibility in the Admin's platform-wide
+     * Transactions feed. Called from PostListingFragment right after
+     * postListing() succeeds, once the simulated M-Pesa PIN step completes.
+     */
+    suspend fun payListingPostingFee(landlordUid: String, listingId: String, amountKsh: Long = 200) {
+        val landlord = getUserProfile(landlordUid)
+
+        val txnRef = db().collection("walletTransactions").document()
+        txnRef.set(WalletTransaction(
+            id = txnRef.id,
+            landlordUid = landlordUid,
+            landlordName = landlord?.fullName ?: "",
+            listingId = listingId,
+            reservationId = "",
+            type = TransactionType.PLATFORM_FEE,
+            amountKsh = amountKsh,
+            createdAt = System.currentTimeMillis(),
+            note = "Listing posting fee (simulated M-Pesa STK push)"
+        )).await()
+
+        logActivity(
+            type = "posting_fee_paid",
+            title = "Listing posting fee paid",
+            subtitle = "${landlord?.fullName ?: "A landlord"} paid KSh $amountKsh to publish a listing"
+        )
     }
 
     // ═══════════════════════════════════════════════════════

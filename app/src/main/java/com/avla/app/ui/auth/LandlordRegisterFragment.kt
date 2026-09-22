@@ -23,7 +23,7 @@ class LandlordRegisterFragment : Fragment() {
     private val viewModel: AuthViewModel by viewModels()
 
     // True when opened via "Resubmit Documents" from LandlordPendingFragment,
-    // for a landlord who already has an account — not a brand new signup.
+    // for a landlord who already has an account — not a brand-new signup.
     private var isResubmitMode = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
