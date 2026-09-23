@@ -19,7 +19,9 @@ import com.avla.app.databinding.ActivityAuthBinding
  *   - SHOW_ID_FLAGGED=true — a student whose school ID was flagged on
  *     spot-check, routes to studentIdResubmitFragment. Unlike SHOW_PENDING,
  *     this never means the student is blocked from the app — only that
- *     they need to resubmit before continuing.
+ *     they need to resubmit before continuing. ID_RESUBMITTED tells that
+ *     screen whether the student already resubmitted and is just waiting
+ *     on an admin recheck, vs. still needing to fill out the form.
  */
 class AuthActivity : AppCompatActivity() {
 
@@ -42,6 +44,7 @@ class AuthActivity : AppCompatActivity() {
         } else if (intent.getBooleanExtra("SHOW_ID_FLAGGED", false)) {
             val bundle = Bundle().apply {
                 putString("ID_FLAG_REASON", intent.getStringExtra("ID_FLAG_REASON") ?: "")
+                putBoolean("ID_RESUBMITTED", intent.getBooleanExtra("ID_RESUBMITTED", false))
             }
             navHost?.navController?.navigate(R.id.studentIdResubmitFragment, bundle)
         }

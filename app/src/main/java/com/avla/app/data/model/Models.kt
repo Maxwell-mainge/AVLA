@@ -33,13 +33,14 @@ data class AppUser(
     val propertyDocLink: String = "",
     val propertyDocType: String = "",
     val rejectionReason: String = "",
-    val suspended: Boolean = false,         // NEW — admin can suspend any user
-    val suspensionReason: String = "",      // NEW — reason shown to suspended user
-    val idFlagged: Boolean = false,         // NEW — admin spot-checked a student's school ID and it looked invalid
-    val idFlagReason: String = "",          // NEW — reason shown to the student, separate from suspension
+    val suspended: Boolean = false,         // admin can suspend any user
+    val suspensionReason: String = "",      // reason shown to suspended user
+    val idFlagged: Boolean = false,         // admin spot-checked a student's school ID and it looked invalid
+    val idFlagReason: String = "",          // reason shown to the student, separate from suspension
+    val idResubmitted: Boolean = false,     // NEW — student resubmitted a new doc link; stays flagged until admin re-checks
     val createdAt: Long = System.currentTimeMillis(),
-    val verifiedAt: Long? = null,           // NEW — when a landlord was approved
-    val rejectedAt: Long? = null,           // NEW — when a landlord was last rejected
+    val verifiedAt: Long? = null,           // when a landlord was approved
+    val rejectedAt: Long? = null,           // when a landlord was last rejected
     val favoriteListingIds: List<String> = emptyList()
 )
 

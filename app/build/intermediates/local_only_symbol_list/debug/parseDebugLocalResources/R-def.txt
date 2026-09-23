@@ -76,8 +76,10 @@ id btnAdminDelete
 id btnApprove
 id btnCall
 id btnChangePassword
+id btnClearDateFilter
 id btnClearFilters
 id btnContinue
+id btnDateFilter
 id btnDeleteListing
 id btnEditPhotos
 id btnLandlord
@@ -105,10 +107,12 @@ id cardListings
 id cardPending
 id cardUsers
 id chipAll
+id chipFlagged
 id chipGroup
 id chipLandlords
 id chipPending
 id chipStudents
+id chipSuspended
 id chipVerified
 id dividerLine
 id etAmenities
@@ -143,6 +147,7 @@ id homeFragment
 id ivActivityIcon
 id ivFavorite
 id ivHouseIllustration
+id ivIcon
 id ivProfileAvatar
 id ivSliderImage
 id ivThumbnail
@@ -155,8 +160,10 @@ id linkFirebase
 id linkHauzisha
 id linkRightmove
 id listingDetailFragment
+id llDateFilterRow
 id llDotsIndicator
 id llLandlordInfo
+id llResubmitForm
 id llStudentInfo
 id loginFragment
 id mainNavGraphRoot
@@ -213,6 +220,7 @@ id tvAvatarInitial
 id tvBedrooms
 id tvCampus
 id tvCount
+id tvDateFilterActive
 id tvDates
 id tvDescription
 id tvDetail
@@ -245,11 +253,13 @@ id tvRole
 id tvRoleBadge
 id tvStatus
 id tvStatusSubtext
+id tvSubtitle
 id tvSupportEmail
 id tvSupportPhone
 id tvTagline
 id tvTitle
 id tvType
+id tvUnderReview
 id tvUsersCount
 id tvVerification
 id tvVerificationStatus

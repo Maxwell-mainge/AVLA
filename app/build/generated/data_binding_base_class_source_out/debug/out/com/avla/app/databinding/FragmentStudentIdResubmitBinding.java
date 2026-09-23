@@ -4,6 +4,7 @@ package com.avla.app.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -34,18 +35,39 @@ public final class FragmentStudentIdResubmitBinding implements ViewBinding {
   public final TextInputEditText etStudentIdLink;
 
   @NonNull
+  public final ImageView ivIcon;
+
+  @NonNull
+  public final LinearLayout llResubmitForm;
+
+  @NonNull
   public final TextView tvReason;
+
+  @NonNull
+  public final TextView tvSubtitle;
+
+  @NonNull
+  public final TextView tvTitle;
+
+  @NonNull
+  public final TextView tvUnderReview;
 
   private FragmentStudentIdResubmitBinding(@NonNull LinearLayout rootView,
       @NonNull MaterialButton btnLogout, @NonNull MaterialButton btnOpenDrive,
       @NonNull MaterialButton btnResubmit, @NonNull TextInputEditText etStudentIdLink,
-      @NonNull TextView tvReason) {
+      @NonNull ImageView ivIcon, @NonNull LinearLayout llResubmitForm, @NonNull TextView tvReason,
+      @NonNull TextView tvSubtitle, @NonNull TextView tvTitle, @NonNull TextView tvUnderReview) {
     this.rootView = rootView;
     this.btnLogout = btnLogout;
     this.btnOpenDrive = btnOpenDrive;
     this.btnResubmit = btnResubmit;
     this.etStudentIdLink = etStudentIdLink;
+    this.ivIcon = ivIcon;
+    this.llResubmitForm = llResubmitForm;
     this.tvReason = tvReason;
+    this.tvSubtitle = tvSubtitle;
+    this.tvTitle = tvTitle;
+    this.tvUnderReview = tvUnderReview;
   }
 
   @Override
@@ -99,14 +121,45 @@ public final class FragmentStudentIdResubmitBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.ivIcon;
+      ImageView ivIcon = ViewBindings.findChildViewById(rootView, id);
+      if (ivIcon == null) {
+        break missingId;
+      }
+
+      id = R.id.llResubmitForm;
+      LinearLayout llResubmitForm = ViewBindings.findChildViewById(rootView, id);
+      if (llResubmitForm == null) {
+        break missingId;
+      }
+
       id = R.id.tvReason;
       TextView tvReason = ViewBindings.findChildViewById(rootView, id);
       if (tvReason == null) {
         break missingId;
       }
 
+      id = R.id.tvSubtitle;
+      TextView tvSubtitle = ViewBindings.findChildViewById(rootView, id);
+      if (tvSubtitle == null) {
+        break missingId;
+      }
+
+      id = R.id.tvTitle;
+      TextView tvTitle = ViewBindings.findChildViewById(rootView, id);
+      if (tvTitle == null) {
+        break missingId;
+      }
+
+      id = R.id.tvUnderReview;
+      TextView tvUnderReview = ViewBindings.findChildViewById(rootView, id);
+      if (tvUnderReview == null) {
+        break missingId;
+      }
+
       return new FragmentStudentIdResubmitBinding((LinearLayout) rootView, btnLogout, btnOpenDrive,
-          btnResubmit, etStudentIdLink, tvReason);
+          btnResubmit, etStudentIdLink, ivIcon, llResubmitForm, tvReason, tvSubtitle, tvTitle,
+          tvUnderReview);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

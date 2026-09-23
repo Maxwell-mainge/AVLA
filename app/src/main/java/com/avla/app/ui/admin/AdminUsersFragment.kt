@@ -18,6 +18,7 @@ import com.avla.app.databinding.FragmentAdminUsersBinding
 import com.avla.app.databinding.ItemUserBinding
 import com.avla.app.utils.UiState
 import com.avla.app.utils.showSnackbar
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class AdminUsersFragment : Fragment() {
@@ -27,6 +28,10 @@ class AdminUsersFragment : Fragment() {
     private val viewModel: AdminViewModel by viewModels()
     private lateinit var adapter: UserAdapter
     private var allUsers: List<AppUser> = emptyList()
+
+    // NEW — active date range filter (inclusive), null when not set
+    private var dateRangeStart: Long? = null
+    private var dateRangeEnd: Long? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentAdminUsersBinding.inflate(inflater, container, false)
@@ -48,6 +53,9 @@ class AdminUsersFragment : Fragment() {
             override fun afterTextChanged(s: Editable?) {}
         })
 
+        binding.btnDateFilter.setOnClickListener { showDateRangePicker() }
+        binding.btnClearDateFilter.setOnClickListener { clearDateFilter() }
+
         viewModel.allUsers.observe(viewLifecycleOwner) { state ->
             binding.progressBar.visibility = if (state is UiState.Loading) View.VISIBLE else View.GONE
             when (state) {
@@ -65,6 +73,46 @@ class AdminUsersFragment : Fragment() {
         viewModel.loadAllUsers()
     }
 
+    /**
+     * NEW — lets admin narrow the list to users created within a date range.
+     * Uses the Material date range picker; the end date is bumped to the end
+     * of that calendar day so a user created any time that day is included.
+     */
+    private fun showDateRangePicker() {
+        val picker = MaterialDatePicker.Builder.dateRangePicker()
+            .setTitleText("Select date range")
+            .build()
+        picker.addOnPositiveButtonClickListener { selection ->
+            dateRangeStart = selection.first
+            dateRangeEnd = selection.second?.let { it + (24 * 60 * 60 * 1000L - 1) }
+            updateDateFilterLabel()
+            applyFilter()
+        }
+        picker.show(childFragmentManager, "user_date_range_picker")
+    }
+
+    private fun clearDateFilter() {
+        dateRangeStart = null
+        dateRangeEnd = null
+        updateDateFilterLabel()
+        applyFilter()
+    }
+
+    @Suppress("SetTextI18n")
+    private fun updateDateFilterLabel() {
+        val start = dateRangeStart
+        val end = dateRangeEnd
+        if (start != null && end != null) {
+            val fmt = java.text.SimpleDateFormat("dd MMM", java.util.Locale.getDefault())
+            binding.tvDateFilterActive.text = "${fmt.format(java.util.Date(start))} – ${fmt.format(java.util.Date(end))}"
+            binding.tvDateFilterActive.visibility = View.VISIBLE
+            binding.btnClearDateFilter.visibility = View.VISIBLE
+        } else {
+            binding.tvDateFilterActive.visibility = View.GONE
+            binding.btnClearDateFilter.visibility = View.GONE
+        }
+    }
+
     private fun applyFilter() {
         val query = binding.etSearch.text.toString().trim().lowercase()
         val filtered = allUsers
@@ -77,10 +125,17 @@ class AdminUsersFragment : Fragment() {
                     binding.chipLandlords.id -> user.role == UserRole.LANDLORD
                     binding.chipVerified.id  -> user.role == UserRole.LANDLORD && user.verificationStatus == VerificationStatus.VERIFIED
                     binding.chipPending.id   -> user.role == UserRole.LANDLORD && user.verificationStatus == VerificationStatus.PENDING
+                    binding.chipFlagged.id   -> user.role == UserRole.STUDENT && user.idFlagged
+                    binding.chipSuspended.id -> user.suspended
                     else -> true
                 }
             }
             .filter { query.isBlank() || it.fullName.lowercase().contains(query) || it.email.lowercase().contains(query) }
+            .filter { user ->
+                val start = dateRangeStart
+                val end = dateRangeEnd
+                (start == null || user.createdAt >= start) && (end == null || user.createdAt <= end)
+            }
 
         adapter.submitList(filtered)
         binding.tvCount.text = "${filtered.size} user${if (filtered.size != 1) "s" else ""}"
@@ -253,10 +308,18 @@ class AdminUsersFragment : Fragment() {
      * review every signup), so this gives admin a way to spot-check school
      * ID documents whenever they have time, and suspend anyone whose ID
      * looks fake after the fact.
+     *
+     * If the student has already resubmitted a new document, the flag/unflag
+     * option is replaced with "Review Resubmission" — resubmitting no longer
+     * auto-clears the flag, so this is the only way it gets cleared now.
      */
     private fun showStudentOptions(user: AppUser) {
         val options = mutableListOf("View School ID")
-        options.add(if (user.idFlagged) "Unflag ID" else "Flag ID")
+        when {
+            user.idFlagged && user.idResubmitted -> options.add("Review Resubmission")
+            user.idFlagged -> options.add("Unflag ID")
+            else -> options.add("Flag ID")
+        }
         options.add(if (user.suspended) "Unsuspend" else "Suspend")
 
         showOptionsDialog(user.fullName, options) { selected ->
@@ -270,6 +333,7 @@ class AdminUsersFragment : Fragment() {
                 }
                 "Flag ID" -> promptFlagId(user)
                 "Unflag ID" -> promptUnflagId(user)
+                "Review Resubmission" -> promptReviewResubmission(user)
                 "Suspend" -> promptSuspend(user)
                 "Unsuspend" -> promptUnsuspend(user)
             }
@@ -303,6 +367,45 @@ class AdminUsersFragment : Fragment() {
             .setTitle("${user.fullName}'s ID is flagged")
             .setMessage("Flag reason: ${user.idFlagReason.ifBlank { "Not specified" }}\n\nClear this flag?")
             .setPositiveButton("Unflag") { _, _ -> viewModel.unflagStudentId(user.uid) }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+    /**
+     * NEW — student already resubmitted a new document link and is waiting
+     * on this decision. Approve clears the flag entirely; Reject keeps them
+     * flagged with a fresh reason and sends them back to the resubmit form.
+     * Admin should tap "View School ID" from the options menu first to
+     * actually look at the new document before deciding.
+     */
+    private fun promptReviewResubmission(user: AppUser) {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("${user.fullName} resubmitted their school ID")
+            .setMessage(
+                "Original flag reason: ${user.idFlagReason.ifBlank { "Not specified" }}\n\n" +
+                        "Open \"View School ID\" from the options menu to check the new document, then Approve or Reject here."
+            )
+            .setPositiveButton("Approve") { _, _ ->
+                viewModel.reviewResubmittedStudentId(user.uid, approved = true)
+            }
+            .setNegativeButton("Reject") { _, _ -> promptRejectResubmission(user) }
+            .setNeutralButton("Cancel", null)
+            .show()
+    }
+
+    private fun promptRejectResubmission(user: AppUser) {
+        val input = android.widget.EditText(requireContext()).apply {
+            hint = "Reason the resubmission still isn't acceptable"
+            setPadding(48, 24, 48, 24)
+        }
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Reject resubmission?")
+            .setMessage("${user.fullName} will stay flagged and be prompted to resubmit again with this new reason.")
+            .setView(input)
+            .setPositiveButton("Reject") { _, _ ->
+                val reason = input.text.toString().trim().ifBlank { "Resubmitted document still could not be verified" }
+                viewModel.reviewResubmittedStudentId(user.uid, approved = false, newReason = reason)
+            }
             .setNegativeButton("Cancel", null)
             .show()
     }
@@ -390,7 +493,24 @@ class AdminUsersFragment : Fragment() {
                     b.tvRoleBadge.text = "STUDENT"
                     b.tvRoleBadge.backgroundTintList = android.content.res.ColorStateList.valueOf(Color.parseColor("#1565C0"))
                     b.tvDetail.text = if (u.campus.isNotBlank()) "📍 ${u.campus}" else ""
-                    b.tvVerification.visibility = View.GONE
+
+                    // NEW — surface flagged / awaiting-review state in the list
+                    // itself, instead of only visible after opening the row.
+                    when {
+                        u.idFlagged && u.idResubmitted -> {
+                            b.tvVerification.visibility = View.VISIBLE
+                            b.tvVerification.text = "🔄 REVIEW RESUBMISSION"
+                            b.tvVerification.backgroundTintList = android.content.res.ColorStateList.valueOf(Color.parseColor("#F57F17"))
+                            b.tvVerification.setTextColor(Color.WHITE)
+                        }
+                        u.idFlagged -> {
+                            b.tvVerification.visibility = View.VISIBLE
+                            b.tvVerification.text = "🚩 ID FLAGGED"
+                            b.tvVerification.backgroundTintList = android.content.res.ColorStateList.valueOf(Color.parseColor("#C62828"))
+                            b.tvVerification.setTextColor(Color.WHITE)
+                        }
+                        else -> b.tvVerification.visibility = View.GONE
+                    }
                 }
                 UserRole.LANDLORD -> {
                     b.tvRoleBadge.text = "LANDLORD"
@@ -428,7 +548,8 @@ class AdminUsersFragment : Fragment() {
                 }
             }
 
-            // Show suspended badge for students too
+            // Show suspended badge for students too — takes priority over the
+            // flagged/review badge set above since suspension is the harder block.
             if (u.suspended && u.role == UserRole.STUDENT) {
                 b.tvVerification.visibility = View.VISIBLE
                 b.tvVerification.text = "🚫 SUSPENDED"

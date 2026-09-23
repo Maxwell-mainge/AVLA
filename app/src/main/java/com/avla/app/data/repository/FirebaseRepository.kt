@@ -138,8 +138,9 @@ class FirebaseRepository {
     suspend fun flagStudentId(uid: String, reason: String) {
         db().collection("users").document(uid).update(
             mapOf(
-                "idFlagged"   to true,
-                "idFlagReason" to reason
+                "idFlagged"     to true,
+                "idFlagReason"  to reason,
+                "idResubmitted" to false
             )
         ).await()
     }
@@ -147,24 +148,62 @@ class FirebaseRepository {
     suspend fun unflagStudentId(uid: String) {
         db().collection("users").document(uid).update(
             mapOf(
-                "idFlagged"    to false,
-                "idFlagReason" to ""
+                "idFlagged"     to false,
+                "idFlagReason"  to "",
+                "idResubmitted" to false
             )
         ).await()
     }
 
     /**
-     * For a student whose school ID was flagged — updates the doc link and
-     * clears the flag, letting them straight back into the app afterward.
+     * For a student whose school ID was flagged — records the new doc link and
+     * marks it as resubmitted, but does NOT clear the flag. The student stays
+     * routed to the "under review" state until an admin explicitly approves or
+     * rejects the resubmission via reviewResubmittedStudentId(). This mirrors
+     * how landlord resubmission goes back to PENDING instead of straight to
+     * VERIFIED.
      */
     suspend fun resubmitStudentId(uid: String, newStudentIdDocLink: String) {
         db().collection("users").document(uid).update(
             mapOf(
                 "studentIdDocLink" to newStudentIdDocLink,
-                "idFlagged"        to false,
-                "idFlagReason"     to ""
+                "idResubmitted"    to true
             )
         ).await()
+    }
+
+    /**
+     * Admin's decision after reviewing a student's resubmitted school ID.
+     * approved = true  -> clears the flag entirely; student regains normal,
+     *                      unflagged access next time idFlagged is checked.
+     * approved = false -> flag stays, idResubmitted resets to false so the
+     *                      student is routed back to the resubmit form, and
+     *                      idFlagReason is updated with the new reason.
+     */
+    suspend fun reviewResubmittedStudentId(uid: String, approved: Boolean, newReason: String = "") {
+        val updates = if (approved) {
+            mapOf(
+                "idFlagged"     to false,
+                "idFlagReason"  to "",
+                "idResubmitted" to false
+            )
+        } else {
+            mapOf(
+                "idFlagged"     to true,
+                "idFlagReason"  to newReason,
+                "idResubmitted" to false
+            )
+        }
+        db().collection("users").document(uid).update(updates).await()
+
+        if (approved) {
+            val student = getUserProfile(uid)
+            logActivity(
+                type = "student_id_reverified",
+                title = "Student ID re-verified",
+                subtitle = "${student?.fullName ?: "A student"}'s resubmitted ID was approved"
+            )
+        }
     }
 
     /**

@@ -186,10 +186,13 @@ class LoginFragment : Fragment() {
                     // through a resubmit screen first, same pattern as landlord
                     // verification. Checked only after suspension, since suspension
                     // is the harder block and always wins if both are true.
+                    // ID_RESUBMITTED is passed along so the resubmit screen knows
+                    // whether to show the form or the "under review" waiting state.
                     if (user.role == UserRole.STUDENT && user.idFlagged) {
                         val destination = Intent(requireContext(), AuthActivity::class.java).apply {
                             putExtra("SHOW_ID_FLAGGED", true)
                             putExtra("ID_FLAG_REASON", user.idFlagReason)
+                            putExtra("ID_RESUBMITTED", user.idResubmitted)
                         }
                         startActivity(destination)
                         requireActivity().finish()
